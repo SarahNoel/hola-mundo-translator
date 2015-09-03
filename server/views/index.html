@@ -5,11 +5,36 @@
 
 {% block content %}
 
-  <div class="container">
+      <!-- Translate Form -->
+      <div class="row">
+        <form class="form-inline" id="translate-form">
+          <div class="form-group">
+            <!-- Start Lang-->
+            <label>Start Lang </label>
+            <input type="text" id="start-lang" name="start-lang" class="form-control" required>
 
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+            <!-- End Lang-->
+            <label>End Lang </label>
+            <input type="text" id="end-lang" name="end-lang" class="form-control" required>
 
-  </div>
+            <!-- Form for text to be translated-->
+            <label>Text to translate</label>
+            <input type="text" id="to-translate" name="to-translate" class="form-control" required>
+
+          </div>
+          <button type="submit" class="btn btn-default">Translate</button>
+        </form>
+      <!-- end translate form div -->
+      </div>
+    <!-- end translate form row -->
+    </div>
+
+    <!-- spacing and line -->
+     <br><hr><br>
+
+    <!-- translation result -->
+    <h2>Translation</h2>
+    <div id="result">
+    </div>
 
 {% endblock %}
