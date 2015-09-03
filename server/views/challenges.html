@@ -9,9 +9,143 @@
 
 <h1> {{title}} </h1>
 
-<h2> What Language would you Like to be Quizzed on?</h2>
+  <form>
+    <select  id= "challenge-start-lang" name="Translate from...">
+      <option value="ar">Arabic</option>
+      <option value="bs-Latn">Bosnian (Latin)</option>
+      <option value="bg">Bulgarian</option>
+      <option value="ca">Catalan</option>
+      <option value="zh-CHS">Chinese (Simpoptionfied)</option>
+      <option value="zh-CHT">Chinese (Traditional)</option>
+      <option value="hr">Croatian</option>
+      <option value="cs">Czech</option>
+      <option value="da">Danish</option>
+      <option value="nl">Dutch</option>
+      <option value="en">English</option>
+      <option value="et">Estonian</option>
+      <option value="fi">Finnish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="el">Greek</option>
+      <option value="ht">Hatian Creole</option>
+      <option value="he">Hebrew</option>
+      <option value="hi">Hindi</option>
+      <option value="mww">Hmong Daw</option>
+      <option value="hu">Hungarian</option>
+      <option value="id">Indonesian</option>
+      <option value="it">Itaoptionan</option>
+      <option value="ja">Japanese</option>
+      <option value="tlh">Koptionngon</option>
+      <option value="ko">Korean</option>
+      <option value="lv">Latvian</option>
+      <option value="lt">optionthuanian</option>
+      <option value="ms">Malay</option>
+      <option value="mt">Maltese</option>
+      <option value="no">Norwegian</option>
+      <option value="fa">Persian</option>
+      <option value="pl">Pooptionsh</option>
+      <option value="pt">Portuguese</option>
+      <option value="otq">Querétaro Otomi</option>
+      <option value="ro">Romanian</option>
+      <option value="ru">Russian</option>
+      <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
+      <option value="sr-Latn">Serbain (Latin)</option>
+      <option value="sk">Slovak</option>
+      <option value="sl">Slovenian</option>
+      <option value="es">Spanish</option>
+      <option value="sv">Swedish</option>
+      <option value="th">Thai</option>
+      <option value="tr">Turkish</option>
+      <option value="uk">Ukrainian</option>
+      <option value="ur">Urdu</option>
+      <option value="vi">Vietnamese</option>
+      <option value="cy">Welsh</option>
+      <option value="yua">Yucatec Maya</option>
+    </select>
+  </form>
+
+              <!-- End Lang-->
+  <form>
+    <select id= "challenge-end-lang" name="Translate to...">
+      <option value="ar">Arabic</option>
+      <option value="bs-Latn">Bosnian (Latin)</option>
+      <option value="bg">Bulgarian</option>
+      <option value="ca">Catalan</option>
+      <option value="zh-CHS">Chinese (Simpoptionfied)</option>
+      <option value="zh-CHT">Chinese (Traditional)</option>
+      <option value="hr">Croatian</option>
+      <option value="cs">Czech</option>
+      <option value="da">Danish</option>
+      <option value="nl">Dutch</option>
+      <option value="en">English</option>
+      <option value="et">Estonian</option>
+      <option value="fi">Finnish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="el">Greek</option>
+      <option value="ht">Hatian Creole</option>
+      <option value="he">Hebrew</option>
+      <option value="hi">Hindi</option>
+      <option value="mww">Hmong Daw</option>
+      <option value="hu">Hungarian</option>
+      <option value="id">Indonesian</option>
+      <option value="it">Itaoptionan</option>
+      <option value="ja">Japanese</option>
+      <option value="tlh">Koptionngon</option>
+      <option value="ko">Korean</option>
+      <option value="lv">Latvian</option>
+      <option value="lt">optionthuanian</option>
+      <option value="ms">Malay</option>
+      <option value="mt">Maltese</option>
+      <option value="no">Norwegian</option>
+      <option value="fa">Persian</option>
+      <option value="pl">Pooptionsh</option>
+      <option value="pt">Portuguese</option>
+      <option value="otq">Querétaro Otomi</option>
+      <option value="ro">Romanian</option>
+      <option value="ru">Russian</option>
+      <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
+      <option value="sr-Latn">Serbain (Latin)</option>
+      <option value="sk">Slovak</option>
+      <option value="sl">Slovenian</option>
+      <option value="es">Spanish</option>
+      <option value="sv">Swedish</option>
+      <option value="th">Thai</option>
+      <option value="tr">Turkish</option>
+      <option value="uk">Ukrainian</option>
+      <option value="ur">Urdu</option>
+      <option value="vi">Vietnamese</option>
+      <option value="cy">Welsh</option>
+      <option value="yua">Yucatec Maya</option>
+    </select>
+  </form>
+
+  <button id="challenge-start">Start!</button>
+  <br>
+
+  <!-- Form for text to be translated-->
+  <div class= "invis">
+  <label>Text to Translate</label>
+  <div id = "challenge-to-translate">
+
+  </div>
+
+  <label>Your Translation</label>
+  <div id = "challenge-user-translate">
+  <textarea id="challenge-user-word" required> </textarea>
+  </div>
+
+<button id="user-submit"type="submit" class="btn btn-default">Submit Answer</button>
 
 
+<div id = "answers">
+
+</div>
+
+<button id = "next-question" class = 'appear-later'>Next Question!</button>
+
+</div> <!--end invis-->
+  </div> <!-- end container -->
 
 <!-- dropdown for languages -->
 

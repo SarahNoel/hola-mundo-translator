@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.invis{
+  display: none;
+}
+
+.appear-later{
+  display: none;
+}
