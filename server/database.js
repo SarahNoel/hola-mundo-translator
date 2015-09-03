@@ -14,7 +14,10 @@ var User = new Schema(
 );
 
 // var Translation = new Schema(
-//   {
+//   { startPhrase:'string'
+//     inputLang:inputLang,
+//     outputLang:outputLang
+//       }
 //   }
 // );
 

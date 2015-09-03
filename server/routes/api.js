@@ -10,13 +10,44 @@ var bt = require('../../node_modules/bing-translate/lib/bing-translate.js').init
     client_secret: '123456789101112131415'
   });
 
+//get all translations
+router.get('/translate', function(req, res, next){
+
+})
 
 
-
-router.get('/translate', function(req, res, next) {
-  bt.translate('I am a banana.', 'en', 'ro', function(err, res){
-  console.log(res);
+//submit translation
+router.post('/translate', function(req, res, next) {
+  var phrase = req.body.phrase;
+  var inputLang = req.body.inputLang;
+  var outputLang = req.body.outputLang;
+  bt.translate(phrase, inputLang, outputLang, function(err, data){
+    res.json(data);
 });
+
+
+
+
+
+//get one translation
+
+
+
+
+
+//update one translation
+
+
+
+
+
+
+//delete one translation
+
+
+
+
+
 
 });
 
