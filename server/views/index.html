@@ -6,11 +6,30 @@
 {% block content %}
 
       <!-- Translate Form -->
+    <div class="container">
       <div class="row">
-        <form class="form-inline" id="translate-form">
-          <div class="form-group">
-                      <!-- Start Lang-->
-            <form>
+      <div class="col-sm-6">
+      <div class="input-group-btn select" id="select1">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected">Translate From:</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu option" role="menu">
+            <li id="1"><a href="#">One</a></li>
+            <li id="2"><a href="#">Two</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="input-group-btn select" id="select1">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected">Translate To:</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu option" role="menu">
+            <li id="1"><a href="#">One</a></li>
+            <li id="2"><a href="#">Two</a></li>
+        </ul>
+      </div>
+    </div>
+
+          <!-- Start Lang-->
+<!--           <form class="langs">
             <select  id= "start-lang" name="Translate from...">
               <option value="ar">Arabic</option>
               <option value="bs-Latn">Bosnian (Latin)</option>
@@ -63,10 +82,10 @@
               <option value="cy">Welsh</option>
               <option value="yua">Yucatec Maya</option>
             </select>
-          </form>
+          </form> -->
 
-                      <!-- End Lang-->
-          <form>
+      <!-- End Lang-->
+<!--           <form class="langs">
             <select id= "end-lang" name="Translate to...">
               <option value="ar">Arabic</option>
               <option value="bs-Latn">Bosnian (Latin)</option>
@@ -119,15 +138,29 @@
               <option value="cy">Welsh</option>
               <option value="yua">Yucatec Maya</option>
             </select>
+          </form> -->
+      </div>
+        <br>
+        <br>
+
+          <form>
+            <div class="row inputLangContainer">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea type="text" class="form-control" placeholder="Enter text to translate..." rows="10"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea type="text" class="form-control" placeholder="Translation will appear here..." rows="10"></textarea>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row buttonRow">
+              <button type="submit" class="btn btn-success" id="translateBtn">Translate</button>
+            </div>
           </form>
-
-            <!-- Form for text to be translated-->
-            <label>Text to translate</label>
-            <input type="text" id="to-translate" name="to-translate" class="form-control" required>
-
-          </div>
-          <button type="submit" class="btn btn-default">Translate</button>
-        </form>
       <!-- end translate form div -->
       </div>
     <!-- end translate form row -->
@@ -140,5 +173,5 @@
     <h2>Translation</h2>
     <div id="result">
     </div>
-
+  </div>
 {% endblock %}

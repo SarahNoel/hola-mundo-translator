@@ -6,3 +6,42 @@ body {
 a {
   color: #00B7FF;
 }
+
+label {
+  font-size: 1.8em;
+}
+
+
+.buttonRow {
+  text-align: center;
+}
+
+#translateBtn {
+  text-align: center;
+  font-size: 2em;
+  width: 8em;
+}
+
+.select button {
+  margin-top: 2em;
+  width:100%;
+  text-align:left;
+}
+
+.select .caret {
+  position:absolute;
+  right:10px;
+  margin-top:10px;
+}
+
+.select:last-child>.btn {
+  border-radius:5px;
+}
+
+.selected {
+  padding-right:10px;
+}
+
+.option {
+  width:100%;
+}
