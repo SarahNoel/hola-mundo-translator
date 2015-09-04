@@ -8,15 +8,45 @@ $(document).on('ready', function() {
   $('#challenges-passsed').html(currentUser.challengesPassed);
   $('#challenges-failed').html(currentUser.challengesFailed);
 
+
+///////////////////   DROPDOWNS  ///////////////////
+var inputLang;
+var outputLang;
+//dropdown for TranslateFrom languages
+$(".option1 a").click(function(){
+      inputLang = $(".btn1:first-child").text($(this).text());
+   });
+
+//dropdown for TranslateTo languages
+$(".option2 li a").click(function(){
+      outputLang = $(".btn2:first-child").text($(this).text());
+   });
+
+//dropdown for Quiz Themes
+$(".option3 li a").click(function(){
+      $(".btn3:first-child").text($(this).text());
+   });
+
 ///////////////////   PRACTICE  ///////////////////
 
    //practice translation
   $('#translate-form').on('submit', function(event){
     event.preventDefault();
 
+    for (var i = 0; i < langCodes.length; i++) {
+      if(inputLang === langCodes[i].name){
+        inputLang = langCodes[i].id
+      }
+    };
+
+
+    for (var i = 0; i < langCodes.length; i++) {
+      if(outputLang === langCodes[i].name){
+        outputLang = langCodes[i].id
+      }
+    };
+
     var phrase = $('#to-translate').val().toLowerCase().trim();
-    var inputLang = $('#start-lang').val()
-    var outputLang = $('#end-lang').val()
 
     var payload = {
       phrase:phrase,
@@ -25,10 +55,8 @@ $(document).on('ready', function() {
       }
 
     $('#to-translate').val("");
-
-    $.post('/api/translate', payload, function(data) {
-      console.log(data)
       //show tranlated word
+    $.post('/api/translate', payload, function(data) {
       $('#result').append('<h4>'+ data.original_text.toLowerCase() +'  is ' + data.translated_text.toLowerCase() + '</h4>')
       });
   }); //end submit for practice
@@ -136,20 +164,6 @@ $(document).on('ready', function() {
           }
         }
       }
-      // else{
-      //   //increment wrong answers by 1
-      //   currentUser.wordsTranslatedIncorrectly += 1;
-      //   currentUser.currentQuizWordsWrong += 1;
-      //   //show answer and stats
-      //   $('#answers').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>')
-      //   $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly)
-
-      //   //if wrong > five, start over, failed quizzes up by 1
-      //   if(currentUser.currentQuizWordsWrong >= 5){
-      //     $('.appear-later').hide();
-      //     $('#answers').html('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2><br><button id="restart-quizzes"><a class="blank" href="/challenges">Return to Challenges</a></button>')
-      //   };
-      // }
       $('#challenge-user-word').val('');
       $('.hide-submit').hide();
     })

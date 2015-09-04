@@ -3,6 +3,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+<<<<<<< HEAD
 .nav a {
   color: #00B7FF;
 }
@@ -46,3 +47,83 @@ li{
   text-decoration: none;
   color: black;
 }
+=======
+/*VERTICAL PAGE SPACING*/
+
+/*dropdown vertical spacing*/
+.langSelect {
+  margin-top: 5em;
+}
+
+/*question progress number spacing*/
+p {
+  margin-top: 1.7em;
+}
+
+#quizBtn {
+  margin-top: 3em;
+}
+
+/*textboxes vertical spacing*/
+.inputLangContainer {
+  margin-top: 2em;
+  text-align: center;
+}
+
+/*ALL BUTTON FORMATTING*/
+
+/*button center page alignment*/
+.buttonRow {
+  text-align: center;
+}
+
+/*button sizing*/
+#translateBtn, #quizBtn {
+  text-align: center;
+  font-size: 1.5em;
+  width: 7em;
+}
+
+/*ALL DROP DOWN FORMATTING*/
+
+/*drop down sizing*/
+.select button {
+  margin-top: 2em;
+  width:100%;
+  text-align:left;
+}
+
+/*caret placement on all drop down menus*/
+.select .caret {
+  position:absolute;
+  right:10px;
+  margin-top:10px;
+}
+
+.select:last-child>.btn {
+  border-radius:2px;
+}
+
+/*CHALLENGES PAGE FORMATTING*/
+
+/*text to translate box*/
+.quizQuestion {
+  background-color: #EDEDED;
+  width: 100%;
+  height: 11em;
+  border-radius: 2px;
+}
+
+/*Quiz progress title (ex. question 1/20) */
+.quizStatus {
+  text-align: center;
+  font-size: 2em;
+}
+
+/*titles of quiz text boxes*/
+.textBoxTitle {
+  font-size: 1.3em;
+}
+
+
+>>>>>>> d660aeca2d8c78654473fa7c0cc24b587171212d
