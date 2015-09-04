@@ -7,7 +7,7 @@
 
 <div class="container">
 
-   <!-- DROP DOWN MENUS -->
+   <!-- Translate from dropdown -->
       <div class="row langSelect">
         <div class="col-sm-4">
           <div class="input-group-btn select" id="select1">
@@ -67,6 +67,7 @@
           </div>
         </div>
 
+   <!-- Translate to dropdown -->
     <div class="col-sm-4">
       <div class="input-group-btn select inputText" id="select1">
         <button type="button" class="btn btn2 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item2">Translate To:</span> <span class="caret"></span></button>
@@ -125,6 +126,8 @@
       </div>
     </div>
 
+
+   <!-- Quiz subject dropdown -->
     <div class="col-sm-4">
       <div class="input-group-btn select inputText" id="select3">
         <button type="button" class="btn btn3 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item3">Choose a Quiz Subject:</span><span class="caret"></span></button>
@@ -140,11 +143,17 @@
   </div>
   <!-- END DROP DOWN MENUS -->
 
+  <br>
+  <button id="challenge-start">Start!</button>
+  <br>
+
+<!-- hide initially -->
+  <div class= "invis">
 
 <!-- QUIZ STATUS -->
   <div class="row quizRow">
     <div class="quizStatus col-sm-offset-3 col-sm-6">
-      <p id="progessNumber">Question 1/20</p>
+      <p id="question-number">Question 1/20</p>
     </div>
   </div>
 <!-- END QUIZ STATUS -->
@@ -158,7 +167,7 @@
           <label class="textBoxTitle">Text To Translate</label>
           <div class="container quizQuestion">
         <!-- place quiz word here -->
-            <p class="word"></p>
+            <h3 id="challenge-to-translate"></h3>
         <!-- end -->
           </div>
         </div>
@@ -166,175 +175,25 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label class="textBoxTitle">Your Translation</label>
-          <textarea type="text" class="form-control"rows="7"></textarea>
+          <textarea id = "challenge-user-word" type="text" class="form-control"rows="7"></textarea>
         </div>
       </div>
-      <div class="row buttonRow">
-        <button type="submit" class="btn btn-primary" id="quizBtn">Submit</button>
+      <div class="row buttonRow hide-submit">
+        <button type="submit" class="btn btn-primary" id="user-submit">Submit Answer</button>
       </div>
     </form>
   </div>
 <!-- END QUIZ INPUT BOXES AND BUTTON -->
 
-<<<<<<< HEAD
- <form>
-   <select id= "challenge-quizzes" name="Quizzes">
-     <option value="animalQuiz">Animal Quiz</option>
-     <option value="bodyQuiz">Body Quiz</option>
-     <option value="commonWordsQuiz">Common Words Quiz</option>
-     <option value="travelQuiz">Travel Quiz</option>
-     <option value="numbersQuiz">Numbers Quiz</option>
-   </select>
- </form>
 
-  <form>
-    <select  id= "challenge-start-lang" name="Translate from...">
-      <option value="ar">Arabic</option>
-      <option value="bs-Latn">Bosnian (Latin)</option>
-      <option value="bg">Bulgarian</option>
-      <option value="ca">Catalan</option>
-      <option value="zh-CHS">Chinese (Simpoptionfied)</option>
-      <option value="zh-CHT">Chinese (Traditional)</option>
-      <option value="hr">Croatian</option>
-      <option value="cs">Czech</option>
-      <option value="da">Danish</option>
-      <option value="nl">Dutch</option>
-      <option value="en">English</option>
-      <option value="et">Estonian</option>
-      <option value="fi">Finnish</option>
-      <option value="fr">French</option>
-      <option value="de">German</option>
-      <option value="el">Greek</option>
-      <option value="ht">Hatian Creole</option>
-      <option value="he">Hebrew</option>
-      <option value="hi">Hindi</option>
-      <option value="mww">Hmong Daw</option>
-      <option value="hu">Hungarian</option>
-      <option value="id">Indonesian</option>
-      <option value="it">Itaoptionan</option>
-      <option value="ja">Japanese</option>
-      <option value="tlh">Koptionngon</option>
-      <option value="ko">Korean</option>
-      <option value="lv">Latvian</option>
-      <option value="lt">optionthuanian</option>
-      <option value="ms">Malay</option>
-      <option value="mt">Maltese</option>
-      <option value="no">Norwegian</option>
-      <option value="fa">Persian</option>
-      <option value="pl">Pooptionsh</option>
-      <option value="pt">Portuguese</option>
-      <option value="otq">Querétaro Otomi</option>
-      <option value="ro">Romanian</option>
-      <option value="ru">Russian</option>
-      <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
-      <option value="sr-Latn">Serbain (Latin)</option>
-      <option value="sk">Slovak</option>
-      <option value="sl">Slovenian</option>
-      <option value="es">Spanish</option>
-      <option value="sv">Swedish</option>
-      <option value="th">Thai</option>
-      <option value="tr">Turkish</option>
-      <option value="uk">Ukrainian</option>
-      <option value="ur">Urdu</option>
-      <option value="vi">Vietnamese</option>
-      <option value="cy">Welsh</option>
-      <option value="yua">Yucatec Maya</option>
-    </select>
-  </form>
-
-              <!-- End Lang-->
-  <form>
-    <select id= "challenge-end-lang" name="Translate to...">
-      <option value="ar">Arabic</option>
-      <option value="bs-Latn">Bosnian (Latin)</option>
-      <option value="bg">Bulgarian</option>
-      <option value="ca">Catalan</option>
-      <option value="zh-CHS">Chinese (Simpoptionfied)</option>
-      <option value="zh-CHT">Chinese (Traditional)</option>
-      <option value="hr">Croatian</option>
-      <option value="cs">Czech</option>
-      <option value="da">Danish</option>
-      <option value="nl">Dutch</option>
-      <option value="en">English</option>
-      <option value="et">Estonian</option>
-      <option value="fi">Finnish</option>
-      <option value="fr">French</option>
-      <option value="de">German</option>
-      <option value="el">Greek</option>
-      <option value="ht">Hatian Creole</option>
-      <option value="he">Hebrew</option>
-      <option value="hi">Hindi</option>
-      <option value="mww">Hmong Daw</option>
-      <option value="hu">Hungarian</option>
-      <option value="id">Indonesian</option>
-      <option value="it">Itaoptionan</option>
-      <option value="ja">Japanese</option>
-      <option value="tlh">Koptionngon</option>
-      <option value="ko">Korean</option>
-      <option value="lv">Latvian</option>
-      <option value="lt">optionthuanian</option>
-      <option value="ms">Malay</option>
-      <option value="mt">Maltese</option>
-      <option value="no">Norwegian</option>
-      <option value="fa">Persian</option>
-      <option value="pl">Pooptionsh</option>
-      <option value="pt">Portuguese</option>
-      <option value="otq">Querétaro Otomi</option>
-      <option value="ro">Romanian</option>
-      <option value="ru">Russian</option>
-      <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
-      <option value="sr-Latn">Serbain (Latin)</option>
-      <option value="sk">Slovak</option>
-      <option value="sl">Slovenian</option>
-      <option value="es">Spanish</option>
-      <option value="sv">Swedish</option>
-      <option value="th">Thai</option>
-      <option value="tr">Turkish</option>
-      <option value="uk">Ukrainian</option>
-      <option value="ur">Urdu</option>
-      <option value="vi">Vietnamese</option>
-      <option value="cy">Welsh</option>
-      <option value="yua">Yucatec Maya</option>
-    </select>
-  </form>
-
-  <button id="challenge-start">Start!</button>
-  <br>
-
-  <!-- Form for text to be translated-->
-  <div class= "invis">
-  <label>Text to Translate</label>
-  <div id = "challenge-to-translate">
-
-  </div>
-  <div class = 'hide-submit'
-  <label>Your Translation</label>
-  <div id = "challenge-user-translate">
-  <textarea id="challenge-user-word" required> </textarea>
-  </div>
-
-  <button id="user-submit"type="submit" class="btn btn-default">Submit Answer</button>
-  </div>
-
-
-<div id = "answers">
-=======
-
-</div>
-<!-- END OF CONTAINER -->
->>>>>>> d660aeca2d8c78654473fa7c0cc24b587171212d
-
-</div>
+<div id ="check-answer"> </div>
 
 <button id = "next-question" class = 'appear-later'>Next Question!</button>
 
 <br><br>
-<div id="prog-bar-info">
 <div class="progress">
   <div id="prog-bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
   </div>
-</div>
-    <h5 id = "question-number" class="center">Question 1/20</h5>
 </div>
 
 </div> <!--end invis-->
