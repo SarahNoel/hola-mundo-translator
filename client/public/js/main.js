@@ -1,6 +1,8 @@
 // add scripts
 $(document).on('ready', function() {
   console.log('sanity check!');
+  //scrolls to top on page refresh
+  $(this).scrollTop(0);
 
    //practice translation
   $('#translate-form').on('submit', function(event){
@@ -27,11 +29,13 @@ $(document).on('ready', function() {
       });
    }); //end submit for practice
 
-
-
-
-
-
 });//end on-ready
 
+//scrolls nicely to services div when header button clicked
+$('#find-out-more').on('click', function(e){
+  e.preventDefault();
+  $('html, body').animate({
+  scrollTop: $('a[name=services]').offset().top
+  }, 1000);
+});
 
