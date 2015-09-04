@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/main.css'>
   </head>
   <body>
 
-  <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Translation</a>
+  <nav class='navbar navbar-default navbar-fixed-top'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <a class='navbar-brand' href='/'>Home</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li id = 'practice-nav'><a href="/">Practice</a></li>
-            <li id = 'challenge-nav'><a href="/challenges">Challenges</a></li>
-            <li id = 'progress-nav'><a href="#">Progress</a></li>
+        <div id='navbar' class='navbar-collapse collapse'>
+          <ul class='nav navbar-nav'>
+            <li id = 'practice-nav'><a href='/translate'>Practice</a></li>
+            <li id = 'challenge-nav'><a href='/challenges'>Challenges</a></li>
+            <li id = 'progress-nav'><a href='/progress'>Progress</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+
+    <div class='span1 prog-bar'>
+      <ul class='list-unstyled' id='prog-bar-ul'><h3>My Progress</h3></ul>
+      <ul class='list-unstyled'>Total Words Translated</ul>
+        <li id= 'words-translated'></li>
+      <ul class='list-unstyled'>Words Translated Correctly</ul>
+        <li id= 'words-correct'></li>
+      <ul class='list-unstyled'>Words Translated Incorrectly</ul>
+        <li id= 'words-incorrect'></li>
+      <ul class='list-unstyled'>Challenges Taken</ul>
+        <li id= 'challenges-taken'></li>
+      <ul class='list-unstyled'>Challenges Passed</ul>
+        <li id= 'challenges-passsed'></li>
+      <ul class='list-unstyled'>Challenges Failed</ul>
+        <li id= 'challenges-failed'></li>
+    </div>
+    <div id ='page-content-wrapper'>
     {% block content %}
 
 
     {% endblock %}
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/main.js"></script>
+    </div>
+    <script type='text/javascript' src='//code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='/js/main.js'></script>
   </body>
 </html>

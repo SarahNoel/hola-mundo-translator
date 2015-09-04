@@ -1,15 +1,20 @@
-// add scripts
 $(document).on('ready', function() {
-   //sets index for quiz
-  var index = 0;
+  var currentUser = new User('Trial User');
 
-  console.log('sanity check!');
+  $('#words-translated').html(currentUser.wordsTranslated);
+  $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+  $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+  $('#challenges-taken').html(currentUser.challengesTaken);
+  $('#challenges-passsed').html(currentUser.challengesPassed);
+  $('#challenges-failed').html(currentUser.challengesFailed);
+
+///////////////////   PRACTICE  ///////////////////
 
    //practice translation
   $('#translate-form').on('submit', function(event){
    event.preventDefault();
 
-   var phrase = $('#to-translate').val().trim();
+   var phrase = $('#to-translate').val().toLowerCase().trim();
    var inputLang = $('#start-lang').val()
    var outputLang = $('#end-lang').val()
 
@@ -30,20 +35,21 @@ $(document).on('ready', function() {
 
 
 
+///////////////////   CHALLENGES  ///////////////////
 
-/////CHALLENGES/////////
-
+var index = 0;
+var useArray;
 var originalWord;
 
   $('#challenge-start').on("click", function(event){
       event.preventDefault();
       //translating English array word to user selected START language
-      var phrase = animalQuiz[index];
+      var phrase = animalQuiz[index].toLowerCase();
       var inputLang = 'en';
       var outputLang = $('#challenge-start-lang').val()
 
       var payload = {
-         phrase:phrase.toLowerCase(),
+         phrase:phrase,
          inputLang:inputLang,
          outputLang:outputLang
          }
@@ -59,6 +65,8 @@ var originalWord;
    //user submits answer
   $('#user-submit').on('click', function(event){
       event.preventDefault();
+      currentUser.wordsTranslated += 1;
+      $('#words-translated').html(currentUser.wordsTranslated)
       var userSubmit;
       var answer;
 
@@ -67,26 +75,33 @@ var originalWord;
       var inputLang = 'en';
       var outputLang = $('#challenge-end-lang').val()
 
+      userSubmit = $('#challenge-user-word').val().trim().toLowerCase();
+
       var payload = {
-         phrase:phrase.toLowerCase(),
+         phrase:phrase,
          inputLang:inputLang,
          outputLang:outputLang
          }
-         console.log(payload);
-      $.post('/api/translate', payload, function(data) {
-         userSubmit = data.original_text.trim().toLowerCase();
+
+       $.post('/api/translate', payload, function(data) {
          answer = data.translated_text.trim().toLowerCase();
          console.log(userSubmit, answer);
          if(userSubmit === answer){
-            $('#answers').append('<h2>Correct!<br>'+ originalWord + ' is ' + answer +'</h2>')
-            //increment correct answers by 1
-         }
-         else{
-            $('#answers').append('<h2>Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>')
-            //increment wrong answers by 1
+            $('#answers').append('<h2 class = "green">Correct!<br>'+ originalWord + ' is ' + answer +'</h2>');
+               //increment correct answers by 1
+               currentUser.wordsTranslatedCorrectly += 1;
+              $('#words-correct').html(currentUser.wordsTranslatedCorrectly)
 
          }
+         else{
+            $('#answers').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>')
+               //increment wrong answers by 1
+               currentUser.wordsTranslatedIncorrectly += 1;
+               $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly)
+         }
          //if wrong > five, start over, failed quizzes up by 1
+         $('#challenge-user-word').val('');
+         $('.hide-submit').hide();
          $('.appear-later').show();
       })
    }); //end challenge-submit
@@ -94,34 +109,54 @@ var originalWord;
    //next question button
    $('#next-question').on('click', function(event){
       event.preventDefault();
-      //moving to next word in array
       index += 1;
-      $('#challenge-to-translate').html('');
-      $('#answers').html('');
-      $('#challenge-user-word').val('');
-     //translating English array word to user selected START language
-      var phrase = animalQuiz[index];
-      var inputLang = 'en';
-      var outputLang = $('#challenge-start-lang').val()
+      if(index < 21){
+         $('#challenge-to-translate').html('');
+         $('#answers').html('');
+         $('#challenge-user-word').val('');
+        //translating English array word to user selected START language
+         var phrase = animalQuiz[index];
+         var inputLang = 'en';
+         var outputLang = $('#challenge-start-lang').val()
 
-      var payload = {
-         phrase:phrase.toLowerCase(),
-         inputLang:inputLang,
-         outputLang:outputLang
-         }
-      //append word for user to translate
-      $.post('/api/translate', payload, function(data) {
-         $('#challenge-to-translate').append('<h2>'+data.translated_text+'</h2>');
-         originalWord = data.translated_text;
-      })
+        var payload = {
+            phrase:phrase.toLowerCase(),
+            inputLang:inputLang,
+            outputLang:outputLang
+            }
+         //append word for user to translate
+        $.post('/api/translate', payload, function(data) {
+            $('#challenge-to-translate').append('<h2>'+data.translated_text+'</h2>');
+            originalWord = data.translated_text;
+         })
+         //hide next button
+        $('.appear-later').hide();
+        $('.hide-submit').show();
+
+      }else{
+         //go to quiz results page
+      }
    }) //end next question
 
 
+
+///////////////////   PROGRESS  ///////////////////
 
 
 });//end on-ready
 
 var animalQuiz = ['cat', 'dog', 'horse', 'tiger', 'lion', 'elephant', 'snake', 'fish', 'bird', 'bear', 'giraffe', 'zebra', 'pig', 'cow', 'duck', 'chicken', 'wolf', 'dolphin', 'lizard', 'sheep']
+
+
+var User = function(name){
+    this.name = name;
+    this.challengesTaken = 0;
+    this.challengesPassed = 0;
+    this.challengesFailed = 0;
+    this.wordsTranslated = 0;
+    this.wordsTranslatedCorrectly = 0;
+    this.wordsTranslatedIncorrectly = 0;
+  }
 
 
 
