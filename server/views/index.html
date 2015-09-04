@@ -6,139 +6,152 @@
 {% block content %}
 
       <!-- Translate Form -->
-      <div class="row">
-        <form class="form-inline" id="translate-form">
-          <div class="form-group">
-                      <!-- Start Lang-->
-            <form>
-            <select  id= "start-lang" name="Translate from...">
-              <option value="ar">Arabic</option>
-              <option value="bs-Latn">Bosnian (Latin)</option>
-              <option value="bg">Bulgarian</option>
-              <option value="ca">Catalan</option>
-              <option value="zh-CHS">Chinese (Simpoptionfied)</option>
-              <option value="zh-CHT">Chinese (Traditional)</option>
-              <option value="hr">Croatian</option>
-              <option value="cs">Czech</option>
-              <option value="da">Danish</option>
-              <option value="nl">Dutch</option>
-              <option value="en">English</option>
-              <option value="et">Estonian</option>
-              <option value="fi">Finnish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="el">Greek</option>
-              <option value="ht">Hatian Creole</option>
-              <option value="he">Hebrew</option>
-              <option value="hi">Hindi</option>
-              <option value="mww">Hmong Daw</option>
-              <option value="hu">Hungarian</option>
-              <option value="id">Indonesian</option>
-              <option value="it">Itaoptionan</option>
-              <option value="ja">Japanese</option>
-              <option value="tlh">Koptionngon</option>
-              <option value="ko">Korean</option>
-              <option value="lv">Latvian</option>
-              <option value="lt">optionthuanian</option>
-              <option value="ms">Malay</option>
-              <option value="mt">Maltese</option>
-              <option value="no">Norwegian</option>
-              <option value="fa">Persian</option>
-              <option value="pl">Pooptionsh</option>
-              <option value="pt">Portuguese</option>
-              <option value="otq">Querétaro Otomi</option>
-              <option value="ro">Romanian</option>
-              <option value="ru">Russian</option>
-              <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
-              <option value="sr-Latn">Serbain (Latin)</option>
-              <option value="sk">Slovak</option>
-              <option value="sl">Slovenian</option>
-              <option value="es">Spanish</option>
-              <option value="sv">Swedish</option>
-              <option value="th">Thai</option>
-              <option value="tr">Turkish</option>
-              <option value="uk">Ukrainian</option>
-              <option value="ur">Urdu</option>
-              <option value="vi">Vietnamese</option>
-              <option value="cy">Welsh</option>
-              <option value="yua">Yucatec Maya</option>
-            </select>
-          </form>
-
-                      <!-- End Lang-->
-          <form>
-            <select id= "end-lang" name="Translate to...">
-              <option value="ar">Arabic</option>
-              <option value="bs-Latn">Bosnian (Latin)</option>
-              <option value="bg">Bulgarian</option>
-              <option value="ca">Catalan</option>
-              <option value="zh-CHS">Chinese (Simpoptionfied)</option>
-              <option value="zh-CHT">Chinese (Traditional)</option>
-              <option value="hr">Croatian</option>
-              <option value="cs">Czech</option>
-              <option value="da">Danish</option>
-              <option value="nl">Dutch</option>
-              <option value="en">English</option>
-              <option value="et">Estonian</option>
-              <option value="fi">Finnish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="el">Greek</option>
-              <option value="ht">Hatian Creole</option>
-              <option value="he">Hebrew</option>
-              <option value="hi">Hindi</option>
-              <option value="mww">Hmong Daw</option>
-              <option value="hu">Hungarian</option>
-              <option value="id">Indonesian</option>
-              <option value="it">Itaoptionan</option>
-              <option value="ja">Japanese</option>
-              <option value="tlh">Koptionngon</option>
-              <option value="ko">Korean</option>
-              <option value="lv">Latvian</option>
-              <option value="lt">optionthuanian</option>
-              <option value="ms">Malay</option>
-              <option value="mt">Maltese</option>
-              <option value="no">Norwegian</option>
-              <option value="fa">Persian</option>
-              <option value="pl">Pooptionsh</option>
-              <option value="pt">Portuguese</option>
-              <option value="otq">Querétaro Otomi</option>
-              <option value="ro">Romanian</option>
-              <option value="ru">Russian</option>
-              <option value="sr-Cyrl">Serbian (Cyriloptionc)</option>
-              <option value="sr-Latn">Serbain (Latin)</option>
-              <option value="sk">Slovak</option>
-              <option value="sl">Slovenian</option>
-              <option value="es">Spanish</option>
-              <option value="sv">Swedish</option>
-              <option value="th">Thai</option>
-              <option value="tr">Turkish</option>
-              <option value="uk">Ukrainian</option>
-              <option value="ur">Urdu</option>
-              <option value="vi">Vietnamese</option>
-              <option value="cy">Welsh</option>
-              <option value="yua">Yucatec Maya</option>
-            </select>
-          </form>
-
-            <!-- Form for text to be translated-->
-            <label>Text to translate</label>
-            <input type="text" id="to-translate" name="to-translate" class="form-control" required>
-
+    <div class="container">
+      <div class="row langSelect">
+        <div class="col-sm-6">
+          <div class="input-group-btn select" id="select1">
+            <button type="button" class="btn btn1 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item1">Translate From:</span> <span class="caret"></span></button>
+            <ul class="dropdown-menu option1" role="menu">
+              <li id="ar"><a href="#">Arabic</a></li>
+              <li id="bs-Latn"><a href="#">Bosnian (Latin)</a></li>
+              <li id="bg"><a href="#">Bulgarian</a></li>
+              <li id="ca"><a href="#">Catalan</a></li>
+              <li id="zh-CHS"><a href="#">Chinese (Simplified)</a></li>
+              <li id="zh-CHT"><a href="#">Chinese (Traditional)</a></li>
+              <li id="hr"><a href="#">Croatian</a></li>
+              <li id="cs"><a href="#">Czech</a></li>
+              <li id="da"><a href="#">Danish</a></li>
+              <li id="nl"><a href="#">Dutch</a></li>
+              <li id="en"><a href="#">English</a></li>
+              <li id="et"><a href="#">Estonian</a></li>
+              <li id="fi"><a href="#">Finnish</a></li>
+              <li id="fr"><a href="#">French</a></li>
+              <li id="de"><a href="#">German</a></li>
+              <li id="el"><a href="#">Greek</a></li>
+              <li id="ht"><a href="#">Hatian Creole</a></li>
+              <li id="he"><a href="#">Hebrew</a></li>
+              <li id="hi"><a href="#">Hindi</a></li>
+              <li id="mww"><a href="#">Hmong Daw</a></li>
+              <li id="hu"><a href="#">Hungarian</a></li>
+              <li id="id"><a href="#">Indonesian</a></li>
+              <li id="it"><a href="#">Italian</a></li>
+              <li id="ja"><a href="#">Japanese</a></li>
+              <li id="tlh"><a href="#">Klingon</a></li>
+              <li id="ko"><a href="#">Korean</a></li>
+              <li id="lv"><a href="#">Latvian</a></li>
+              <li id="lt"><a href="#">Lithuanian</a></li>
+              <li id="ms"><a href="#">Malay</a></li>
+              <li id="mt"><a href="#">Maltese</a></li>
+              <li id="no"><a href="#">Norwegian</a></li>
+              <li id="fa"><a href="#">Persian</a></li>
+              <li id="pl"><a href="#">Polish</a></li>
+              <li id="pt"><a href="#">Portuguese</a></li>
+              <li id="otq"><a href="#">Querétaro Otomi</a></li>
+              <li id="ro"><a href="#">Romanian</a></li>
+              <li id="ru"><a href="#">Russian</a></li>
+              <li id="sr-Cyrl"><a href="#">Serbian (Cyrillic)</a></li>
+              <li id="sr-Latn"><a href="#">Serbain (Latin)</a></li>
+              <li id="sk"><a href="#">Slovak</a></li>
+              <li id="sl"><a href="#">Slovenian</a></li>
+              <li id="es"><a href="#">Spanish</a></li>
+              <li id="sv"><a href="#">Swedish</a></li>
+              <li id="th"><a href="#">Thai</a></li>
+              <li id="tr"><a href="#">Turkish</a></li>
+              <li id="uk"><a href="#">Ukrainian</a></li>
+              <li id="ur"><a href="#">Urdu</a></li>
+              <li id="vi"><a href="#">Vietnamese</a></li>
+              <li id="cy"><a href="#">Welsh</a></li>
+              <li id="yua"><a href="#">Yucatec Maya</a></li>
+            </ul>
           </div>
-          <button type="submit" class="btn btn-default">Translate</button>
-        </form>
+        </div>
+
+    <div class="col-sm-6">
+      <div class="input-group-btn select inputText" id="select1">
+        <button type="button" class="btn btn2 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item2">Translate To:</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu option2" role="menu">
+              <li id="ar"><a href="#">Arabic</a></li>
+              <li id="bs-Latn"><a href="#">Bosnian (Latin)</a></li>
+              <li id="bg"><a href="#">Bulgarian</a></li>
+              <li id="ca"><a href="#">Catalan</a></li>
+              <li id="zh-CHS"><a href="#">Chinese (Simplified)</a></li>
+              <li id="zh-CHT"><a href="#">Chinese (Traditional)</a></li>
+              <li id="hr"><a href="#">Croatian</a></li>
+              <li id="cs"><a href="#">Czech</a></li>
+              <li id="da"><a href="#">Danish</a></li>
+              <li id="nl"><a href="#">Dutch</a></li>
+              <li id="en"><a href="#">English</a></li>
+              <li id="et"><a href="#">Estonian</a></li>
+              <li id="fi"><a href="#">Finnish</a></li>
+              <li id="fr"><a href="#">French</a></li>
+              <li id="de"><a href="#">German</a></li>
+              <li id="el"><a href="#">Greek</a></li>
+              <li id="ht"><a href="#">Hatian Creole</a></li>
+              <li id="he"><a href="#">Hebrew</a></li>
+              <li id="hi"><a href="#">Hindi</a></li>
+              <li id="mww"><a href="#">Hmong Daw</a></li>
+              <li id="hu"><a href="#">Hungarian</a></li>
+              <li id="id"><a href="#">Indonesian</a></li>
+              <li id="it"><a href="#">Italian</a></li>
+              <li id="ja"><a href="#">Japanese</a></li>
+              <li id="tlh"><a href="#">Klingon</a></li>
+              <li id="ko"><a href="#">Korean</a></li>
+              <li id="lv"><a href="#">Latvian</a></li>
+              <li id="lt"><a href="#">Lithuanian</a></li>
+              <li id="ms"><a href="#">Malay</a></li>
+              <li id="mt"><a href="#">Maltese</a></li>
+              <li id="no"><a href="#">Norwegian</a></li>
+              <li id="fa"><a href="#">Persian</a></li>
+              <li id="pl"><a href="#">Polish</a></li>
+              <li id="pt"><a href="#">Portuguese</a></li>
+              <li id="otq"><a href="#">Querétaro Otomi</a></li>
+              <li id="ro"><a href="#">Romanian</a></li>
+              <li id="ru"><a href="#">Russian</a></li>
+              <li id="sr-Cyrl"><a href="#">Serbian (Cyrillic)</a></li>
+              <li id="sr-Latn"><a href="#">Serbain (Latin)</a></li>
+              <li id="sk"><a href="#">Slovak</a></li>
+              <li id="sl"><a href="#">Slovenian</a></li>
+              <li id="es"><a href="#">Spanish</a></li>
+              <li id="sv"><a href="#">Swedish</a></li>
+              <li id="th"><a href="#">Thai</a></li>
+              <li id="tr"><a href="#">Turkish</a></li>
+              <li id="uk"><a href="#">Ukrainian</a></li>
+              <li id="ur"><a href="#">Urdu</a></li>
+              <li id="vi"><a href="#">Vietnamese</a></li>
+              <li id="cy"><a href="#">Welsh</a></li>
+              <li id="yua"><a href="#">Yucatec Maya</a></li>
+        </ul>
+      </div>
+    </div>
+
+      </div>
+        <br>
+        <br>
+
+          <form>
+            <div class="row inputLangContainer">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea type="text" class="form-control" placeholder="Enter text to translate..." rows="10"></textarea>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <textarea id="result" type="text" class="form-control" placeholder="Translation will appear here..." rows="10"></textarea>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row buttonRow">
+              <button type="submit" class="btn btn-primary" id="translateBtn">Translate</button>
+            </div>
+          </form>
       <!-- end translate form div -->
       </div>
     <!-- end translate form row -->
     </div>
 
-    <!-- spacing and line -->
-     <br><hr><br>
-
-    <!-- translation result -->
-    <h2>Translation</h2>
-    <div id="result">
-    </div>
-
+  </div>
 {% endblock %}
