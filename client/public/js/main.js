@@ -1,4 +1,14 @@
+
+// //database user
+// var currentUser = new User('Trial User');
+
 $(document).on('ready', function() {
+  // var currentUser =
+  var payload = {name:"Guest"}
+  $.post('/api/users', payload, function(data){
+    console.log(data);
+  })
+
   $('#words-translated').html(currentUser.wordsTranslated);
   $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
   $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
@@ -94,13 +104,10 @@ $(".option3 li a").click(function(){
 
     //translating English array word to user selected START language
     var phrase = useArray[index].toLowerCase().trim();
-    var arrayLang = 'en';
-    var userStartLang = inputLang;
-
     var payload = {
       phrase:phrase,
-      inputLang:arrayLang,
-      outputLang:userStartLang
+      inputLang:'en',
+      outputLang:inputLang
       }
 
     //append word for user to translate
@@ -168,9 +175,9 @@ $(".option3 li a").click(function(){
           $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly)
           //if wrong > five, start over, failed quizzes up by 1
           if(currentUser.currentQuizWordsWrong >= 5){
+            user.challengesFailed += 1;
             $('.appear-later').hide();
             $('#check-answer').html('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2><br><button id="restart-quizzes"><a class="blank" href="/challenges">Return to Challenges</a></button>')
-
           }
         }
       }
@@ -201,19 +208,19 @@ $(".option3 li a").click(function(){
         }
        //append word for user to translate
       $.post('/api/translate', payload, function(data) {
-          $('#challenge-to-translate').html(data.translated_text);
-          originalWord = data.translated_text;
+        $('#challenge-to-translate').html(data.translated_text);
+        originalWord = data.translated_text;
       })
        //hide next button
       $('.appear-later').hide();
       $('.hide-submit').show();
     //if no more questions
     }else{
+      user.challengesPassed += 1;
        //go to quiz results page
-       //
+
     }
  }) //end next question
-
 
 
 ///////////////////   PROGRESS  ///////////////////

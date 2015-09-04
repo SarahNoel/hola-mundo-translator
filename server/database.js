@@ -10,6 +10,7 @@ var User = new Schema(
     wordsTranslated: Number,
     wordsTranslatedCorrectly: Number,
     wordsTranslatedIncorrectly: Number,
+    currentQuizWordsWrong: Number
   }
 );
 
