@@ -40,11 +40,23 @@ $(document).on('ready', function() {
 var index = 0;
 var useArray;
 var originalWord;
+var progBarWidth = 0;
+var questionNum = 1;
+
 
   $('#challenge-start').on("click", function(event){
       event.preventDefault();
+      //choose array to quiz from
+      var useArrayTitle = $('#challenge-quizzes').val();
+      for (var i = 0; i < allQuizzes.length; i++) {
+        if(useArrayTitle === allQuizzes[i].title){
+          useArray = allQuizzes[i].content;
+        }
+      };
+      console.log(useArray);
+
       //translating English array word to user selected START language
-      var phrase = animalQuiz[index].toLowerCase();
+      var phrase = useArray[index].toLowerCase();
       var inputLang = 'en';
       var outputLang = $('#challenge-start-lang').val()
 
@@ -66,12 +78,15 @@ var originalWord;
   $('#user-submit').on('click', function(event){
       event.preventDefault();
       currentUser.wordsTranslated += 1;
+      progBarWidth += 5;
+      $('#prog-bar').css({width:progBarWidth+'%'})
+
       $('#words-translated').html(currentUser.wordsTranslated)
       var userSubmit;
       var answer;
 
       //finding answer by translating English array word to user selected END language
-      var phrase = animalQuiz[index];
+      var phrase = useArray[index];
       var inputLang = 'en';
       var outputLang = $('#challenge-end-lang').val()
 
@@ -110,12 +125,14 @@ var originalWord;
    $('#next-question').on('click', function(event){
       event.preventDefault();
       index += 1;
+      questionNum += 1;
+      $('#question-number').html("Question " + questionNum + "/20");
       if(index < 21){
          $('#challenge-to-translate').html('');
          $('#answers').html('');
          $('#challenge-user-word').val('');
         //translating English array word to user selected START language
-         var phrase = animalQuiz[index];
+         var phrase = useArray[index];
          var inputLang = 'en';
          var outputLang = $('#challenge-start-lang').val()
 
@@ -145,7 +162,34 @@ var originalWord;
 
 });//end on-ready
 
-var animalQuiz = ['cat', 'dog', 'horse', 'tiger', 'lion', 'elephant', 'snake', 'fish', 'bird', 'bear', 'giraffe', 'zebra', 'pig', 'cow', 'duck', 'chicken', 'wolf', 'dolphin', 'lizard', 'sheep']
+//quizzes
+
+var animalQuiz = {
+  title:'animalQuiz',
+  content:['cat', 'dog', 'horse', 'tiger', 'lion', 'elephant', 'snake', 'fish', 'bird', 'bear', 'giraffe', 'zebra', 'pig', 'cow', 'duck', 'chicken', 'wolf', 'dolphin', 'lizard', 'sheep']
+  };
+
+var bodyQuiz = {
+  title:'bodyQuiz',
+  content:['arm', 'eye', 'belly', 'leg', 'elbow', 'finger', 'foot', 'hand', 'mouth', 'nose', 'head', 'ear', 'tongue', 'toe', 'back', 'shoulder', 'tongue', 'knee', 'hip', 'waist']
+  };
+
+var commonWordsQuiz = {
+  title:'commonWordsQuiz',
+  content:['hello', 'goodbye', 'please', 'thank you', 'sorry', 'excuse me', 'money', 'help', 'name', 'bathroom', 'left', 'right', 'doctor', 'police', 'how much', 'speak', 'water', 'where', 'yes', 'no']
+  };
+
+var travelQuiz = {
+  title:'travelQuiz',
+  content:['where is this', 'how far', 'what time is it', 'airplane', 'taxi', 'bus', 'airport', 'train', 'museum', 'hotel', 'restaurant', 'food', 'lost', 'understand', 'do you have', 'street', 'bank', 'need', 'table', 'menu']
+  };
+
+var numbersQuiz = {
+  title:'numbersQuiz',
+  content:['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']
+  };
+
+var allQuizzes = [animalQuiz, bodyQuiz, commonWordsQuiz, travelQuiz, numbersQuiz];
 
 
 var User = function(name){

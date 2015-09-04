@@ -9,6 +9,16 @@
 
 <h1> {{title}} </h1>
 
+ <form>
+   <select id= "challenge-quizzes" name="Quizzes">
+     <option value="animalQuiz">Animal Quiz</option>
+     <option value="bodyQuiz">Body Quiz</option>
+     <option value="commonWordsQuiz">Common Words Quiz</option>
+     <option value="travelQuiz">Travel Quiz</option>
+     <option value="numbersQuiz">Numbers Quiz</option>
+   </select>
+ </form>
+
   <form>
     <select  id= "challenge-start-lang" name="Translate from...">
       <option value="ar">Arabic</option>
@@ -144,6 +154,15 @@
 </div>
 
 <button id = "next-question" class = 'appear-later'>Next Question!</button>
+
+<br><br>
+<div id="prog-bar-info">
+<div class="progress">
+  <div id="prog-bar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+  </div>
+</div>
+    <h5 id = "question-number" class="center">Question 1/20</h5>
+</div>
 
 </div> <!--end invis-->
   </div> <!-- end container -->
