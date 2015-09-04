@@ -33,7 +33,7 @@ a {
   padding-bottom: 50px;
   text-align: center;
   color: #f8f8f8;
-  background: url(/img/worldofdiscovery.jpg) no-repeat center center;
+  background: url(/img/world-map.jpg) no-repeat center center;
   background-size: cover;
 }
 
@@ -69,9 +69,9 @@ a {
 }
 
 ul.intro-social-buttons > li {
-    display: block;
-    margin-bottom: 20px;
-    padding: 0;
+  display: block;
+  margin-bottom: 20px;
+  padding: 0;
 }
 
 ul.intro-social-buttons > li:last-child {
@@ -79,7 +79,7 @@ ul.intro-social-buttons > li:last-child {
 }
 
 .intro-divider {
-    width: 100%;
+  width: 100%;
 }
 }
 
@@ -109,7 +109,7 @@ ul.intro-social-buttons > li:last-child {
   padding: 100px 0;
   color: #f8f8f8;
   text-align: center;
-  background: url(/img/worldofdiscovery.jpg) no-repeat center center;
+  background: url(/img/map.jpg) no-repeat center center;
   background-size: cover;
 }
 
