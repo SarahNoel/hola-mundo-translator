@@ -13,7 +13,7 @@ var bt = require('../../node_modules/bing-translate/lib/bing-translate.js').init
 //get all translations
 router.get('/translate', function(req, res, next){
 
-})
+});
 
 //submit translation
 router.post('/translate', function(req, res, next) {
@@ -22,6 +22,7 @@ router.post('/translate', function(req, res, next) {
   var outputLang = req.body.outputLang;
   bt.translate(phrase, inputLang, outputLang, function(err, data){
     res.json(data);
+  });
 });
 
 
@@ -46,8 +47,7 @@ router.post('/users', function(req, res) {
     currentQuizWordsWrong:0,
   })
   .save(function(err, user) {
-    console.log(user);
-    res.json({message: 'User added!'});
+    res.json({user:user, message: 'User added!'});
   });
 });
 
@@ -79,11 +79,6 @@ router.delete('/user/:id', function(req, res) {
     console.log(user);
     res.json(user);
   });
-});
-
-
-
-
 });
 
 

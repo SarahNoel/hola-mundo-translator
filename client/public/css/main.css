@@ -3,9 +3,21 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-<<<<<<< HEAD
-.nav a {
-  color: #00B7FF;
+.user-id{
+  display: none;
+}
+
+.title{
+  margin-bottom: -75px;
+}
+
+.start-invis{
+  display: none;
+}
+
+.gray {
+  color: #707779;
+  padding: 10px;
 }
 
 li{
@@ -30,6 +42,10 @@ li{
   text-align: center;
 }
 
+.dropgap{
+  margin-top: 20px;
+}
+
 .green{
   color:green;
 }
@@ -47,7 +63,7 @@ li{
   text-decoration: none;
   color: black;
 }
-=======
+
 /*VERTICAL PAGE SPACING*/
 
 /*dropdown vertical spacing*/
@@ -124,6 +140,3 @@ p {
 .textBoxTitle {
   font-size: 1.3em;
 }
-
-
->>>>>>> d660aeca2d8c78654473fa7c0cc24b587171212d

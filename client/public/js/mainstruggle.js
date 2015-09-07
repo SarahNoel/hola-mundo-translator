@@ -1,52 +1,20 @@
+$(document).on('ready', function() {
+  console.log("sanity check!");
+
+  $('#add-user').on('click', function(event){
+    event.preventDefault();
+    currentUserNum = makeNewUser();
+    console.log(currentUserNum);
+  });
+
+});//end on-ready
+
+///////////////////   DROPDOWNS  ///////////////////
 var currentUser;
 var currentUserNum;
 var inputLang;
 var outputLang;
 var quizName;
-
-$(document).on('ready', function() {
-  console.log("sanity check!");
-  makeNewUser();
-});//end on-ready
-
-
-///////////////////   NAVIGATION  ///////////////////
-
-$('#home-nav').on('click', function(event){
-  event.preventDefault();
-  $('#challenges-page').hide();
-  $('#progress-page').hide();
-  $('#practice-page').hide();
-  $('#home-page').fadeIn();
-});
-
-$('#practice-nav').on('click', function(event){
-  event.preventDefault();
-  $('#home-page').hide();
-  $('#challenges-page').hide();
-  $('#progress-page').hide();
-  $('#practice-page').fadeIn();
-});
-
-$('#challenge-nav').on('click', function(event){
-  event.preventDefault();
-  $('#home-page').hide();
-  $('#progress-page').hide();
-  $('#practice-page').hide();
-  $('#challenges-page').fadeIn();
-});
-
-$('#progress-nav').on('click', function(event){
-  event.preventDefault();
-  $('#home-page').hide();
-  $('#challenges-page').hide();
-  $('#practice-page').hide();
-  $('#progress-page').fadeIn();
-});
-
-
-///////////////////   DROPDOWNS  ///////////////////
-
 //dropdown for TranslateFrom languages
 $(".option1 a").click(function(){
   $(".btn1:first-child").text($(this).text());
@@ -64,7 +32,6 @@ $(".option3 li a").click(function(){
   $(".btn3:first-child").text($(this).text());
   quizName = $(this).html();
    });
-
 
 ///////////////////   PRACTICE  ///////////////////
 
@@ -107,22 +74,8 @@ var originalWord;
 var progBarWidth = 0;
 var questionNum = 1;
 
-$(document).on("click", '#challenge-start', function(event){
+$('#challenge-start').on("click", function(event){
   event.preventDefault();
-  //reset progress bar
-  progBarWidth = 0;
-  $('#prog-bar').css({width:progBarWidth+'%'});
-
-  //get user
-  console.log(currentUserNum);
-  currentUser = getSingleUser(currentUserNum);
-  console.log(currentUser);
-
-  $('.invis').hide();
-  $('#check-answer').html('');
-  $('#question-number').html("Question 1/20");
-  console.log(currentUser);
-  currentUser.challengesTaken += 1;
   currentUser.currentQuizWordsWrong = 0;
   //choose array to quiz from
   for (var i = 0; i < allQuizzes.length; i++) {
@@ -157,34 +110,36 @@ $(document).on("click", '#challenge-start', function(event){
     originalWord = data.translated_text;
     //submit button appears
     $('.invis').fadeIn();
-    $('.hide-submit').fadeIn();
-
   });
-}); //end start challenge button
+ }); //end start challenge button
+
+
 
 //user submits answer
 $('#user-submit').on('click', function(event){
   event.preventDefault();
-  currentUser = getSingleUser(currentUserNum);
+  $.get('/api/user/'+ currentUserNum, function(data){
+    data = currentUser;
+    var userSubmit;
+    var answer;
+    currentUser.wordsTranslated += 1;
+    progBarWidth += 5;
 
-  var answer;
-  currentUser.wordsTranslated += 1;
-  progBarWidth += 5;
+    //update progress bar and stats
+    $('#prog-bar').css({width:progBarWidth+'%'});
+    $('#words-translated').html(currentUser.wordsTranslated);
 
-  //update progress bar and stats
-  $('#prog-bar').css({width:progBarWidth+'%'});
-  $('#words-translated').html(currentUser.wordsTranslated);
+    //find answer by translating English array word to user selected END language
+    var phrase = useArray[index];
+    var inputLang = 'en';
 
-  //find answer by translating English array word to user selected END language
-  var phrase = useArray[index];
+    userSubmit = $('#challenge-user-word').val().trim().toLowerCase();
 
-  var userSubmit = $('#challenge-user-word').val().trim().toLowerCase();
-
-  payload = {
-    phrase:phrase,
-    inputLang:'en',
-    outputLang:outputLang
-    };
+    payload = {
+      phrase:phrase,
+      inputLang:inputLang,
+      outputLang:outputLang
+      };
 
     $.post('/api/translate', payload, function(data) {
       answer = data.translated_text.trim().toLowerCase();
@@ -216,127 +171,89 @@ $('#user-submit').on('click', function(event){
           //increment wrong answers by 1
           currentUser.wordsTranslatedIncorrectly += 1;
           currentUser.currentQuizWordsWrong += 1;
-          //updating user info- PUT request
+          //updating user info
           updateSingleUser(currentUser, currentUserNum);
-
           //show answer and stats
           $('#check-answer').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>');
           $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
-
           //if wrong > five, start over, failed quizzes up by 1
           if(currentUser.currentQuizWordsWrong >= 5){
             currentUser.challengesFailed += 1;
-            //updating user info-PUT request
+
+            //updating user info
             updateSingleUser(currentUser, currentUserNum);
 
             $('.appear-later').hide();
-            $('#check-answer').append('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
+            $('#check-answer').html('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2><br><button id="restart-quizzes"><a class="blank" href="/challenges">Return to Challenges</a></button>');
           }
         }
       }
       $('#challenge-user-word').val('');
       $('.hide-submit').hide();
     });
-  }); //end challenge-submit
+  });
+}); //end challenge-submit
+
+
 
 //next question button
 $('#next-question').on('click', function(event){
   event.preventDefault();
-  //get user
-  currentUser = getSingleUser(currentUserNum);
-  console.log(currentUser);
-  index += 1;
-  questionNum += 1;
-  $('#question-number').html("Question " + questionNum + "/20");
-  $('#challenge-to-translate').html('');
-  $('#answers').html('');
-  $('#challenge-user-word').val('');
-  $('#check-answer').html('');
+  $.get('/api/user/'+ currentUserNum, function(data){
+    currentUser = data;
+    console.log(currentUser);
+    index += 1;
+    questionNum += 1;
+    $('#question-number').html("Question " + questionNum + "/20");
+    $('#challenge-to-translate').html('');
+    $('#answers').html('');
+    $('#challenge-user-word').val('');
+    $('#check-answer').html('');
 
-  if(index < 21){
-    //translating English array word to user selected START language
-    var phrase = useArray[index];
+    if(index < 21){
+      //translating English array word to user selected START language
+      var phrase = useArray[index];
 
-    payload = {
-      phrase:phrase,
-      inputLang:'en',
-      outputLang:inputLang
-      };
-     //append word for user to translate
-    $.post('/api/translate', payload, function(data) {
-      $('#challenge-to-translate').html(data.translated_text);
-      originalWord = data.translated_text;
-    });
-     //hide next button
-    $('.appear-later').hide();
-    $('.hide-submit').show();
-  //if no more questions
-  }else{
-    currentUser.challengesPassed += 1;
-    //updating user info
-    updateSingleUser(currentUser, currentUserNum);
-    //show quiz results
+      payload = {
+        phrase:phrase,
+        inputLang:'en',
+        outputLang:inputLang
+        };
+       //append word for user to translate
+      $.post('/api/translate', payload, function(data) {
+        $('#challenge-to-translate').html(data.translated_text);
+        originalWord = data.translated_text;
+      });
+       //hide next button
+      $('.appear-later').hide();
+      $('.hide-submit').show();
+    //if no more questions
+    }else{
+      currentUser.challengesPassed += 1;
+      //updating user info
+      updateSingleUser(currentUser, currentUserNum);
+      //go to quiz results page
 
-  }
+    }
+
+  });//end get request
 
 }); //end next question
 
 
+
+
+
+
+
+
 ///////////////////   PROGRESS  ///////////////////
 
-$(document).on('click', '#progress-nav', function(event){
+$('#progress-nav').on('click', function(event){
   event.preventDefault();
-  currentUser = getSingleUser(currentUserNum);
-}); //end progress click
-
-
-///////////////////   HELPER FUNCTIONS  ///////////////////
-
-//POST new user
-function makeNewUser(){
-  var payload = {name:"Guest"};
-  $.post('/api/users', payload, function(data){
-    currentUser = data.user;
-  $('#words-translated').html(currentUser.wordsTranslated);
-  $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
-  $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
-  $('#challenges-taken').html(currentUser.challengesTaken);
-  $('#challenges-passsed').html(currentUser.challengesPassed);
-  $('#challenges-failed').html(currentUser.challengesFailed);
-  currentUserNum = currentUser._id;
-  });
-}
-
-//PUT single user info
-function updateSingleUser(currentUser, currentUserNum){
-  payload ={
-    wordsTranslated: currentUser.wordsTranslated,
-    wordsTranslatedCorrectly:currentUser.wordsTranslatedCorrectly,
-    wordsTranslatedIncorrectly: currentUser.wordsTranslatedIncorrectly,
-    challengesTaken :currentUser.challengesTaken,
-    challengesPassed: currentUser.challengesPassed,
-    challengesFailed: currentUser.challengesFailed,
-    currentQuizWordsWrong: currentUser.currentQuizWordsWrong
-  };
-  $.ajax({
-    method: "PUT",
-    url: '/api/user/'+ currentUserNum,
-    data: payload
-  }).done(function(data) {
-      currentUser = data;
-      console.log(currentUser);
-      $('#words-translated').html(currentUser.wordsTranslated);
-      $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
-      $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
-      $('#challenges-taken').html(currentUser.challengesTaken);
-      $('#challenges-passsed').html(currentUser.challengesPassed);
-      $('#challenges-failed').html(currentUser.challengesFailed);
-  });
-}
-
-//GET single user
-function getSingleUser(currentUserNum){
-  $.get("/api/user/" + currentUserNum, function(data){
+  $.get('/api/user/'+ currentUserNum, function(data){
+    console.log("GET REQUEST #2");
+    console.log(data);
     currentUser = data;
     $('#words-translated').html(currentUser.wordsTranslated);
     $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
@@ -344,11 +261,21 @@ function getSingleUser(currentUserNum){
     $('#challenges-taken').html(currentUser.challengesTaken);
     $('#challenges-passsed').html(currentUser.challengesPassed);
     $('#challenges-failed').html(currentUser.challengesFailed);
-  });
-  return currentUser;
-}
 
-///////////////////   QUIZZES  ///////////////////
+    $.get('/progress', function(data){
+      console.log('test');
+      console.log(currentUser);
+    });
+  });
+}); //end progress click
+
+
+// $.get('/api/user/'+ currentUserNum, function(data){
+//     console.log(data);
+//   });
+
+
+//quizzes
 
 var animalQuiz = {
   title:'Animal',
@@ -376,6 +303,7 @@ var numbersQuiz = {
   };
 
 var allQuizzes = [animalQuiz, bodyQuiz, commonWordsQuiz, travelQuiz, numbersQuiz];
+
 
 var langCodes = [
 {"id":"ar", "name": "Arabic"},
@@ -429,4 +357,60 @@ var langCodes = [
 {"id":"cy", "name": "Welsh"},
 {"id":"yua", "name": "Yucatec Maya"}
 ];
+
+function makeNewUser(){
+  var payload = {name:"Guest"};
+  $.post('/api/users', payload, function(data){
+    currentUser = data.user;
+  $('#words-translated').html(currentUser.wordsTranslated);
+  $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+  $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+  $('#challenges-taken').html(currentUser.challengesTaken);
+  $('#challenges-passsed').html(currentUser.challengesPassed);
+  $('#challenges-failed').html(currentUser.challengesFailed);
+  currentUserNum =  currentUser._id;
+  });
+  return currentUserNum;
+}
+
+function updateSingleUser(currentUser, currentUserNum){
+  payload ={
+    wordsTranslated: currentUser.wordsTranslated,
+    wordsTranslatedCorrectly:currentUser.wordsTranslatedCorrectly,
+    wordsTranslatedIncorrectly: currentUser.wordsTranslatedIncorrectly,
+    challengesTaken :currentUser.challengesTaken,
+    challengesPassed: currentUser.challengesPassed,
+    challengesFailed: currentUser.challengesFailed,
+    currentQuizWordsWrong: currentUser.currentQuizWordsWrong
+  };
+  $.ajax({
+    method: "PUT",
+    url: '/api/user/'+ currentUserNum,
+    data: payload
+
+  }).done(function(data) {
+      currentUser = data;
+      console.log(currentUser);
+      $('#words-translated').html(currentUser.wordsTranslated);
+      $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+      $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+      $('#challenges-taken').html(currentUser.challengesTaken);
+      $('#challenges-passsed').html(currentUser.challengesPassed);
+      $('#challenges-failed').html(currentUser.challengesFailed);
+  });
+}
+
+function getSingleUser(currentUser, currentUserNum){
+  $.get('/api/user/'+ currentUserNum, function(data){
+    currentUser = data;
+    $('#words-translated').html(currentUser.wordsTranslated);
+    $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+    $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+    $('#challenges-taken').html(currentUser.challengesTaken);
+    $('#challenges-passsed').html(currentUser.challengesPassed);
+    $('#challenges-failed').html(currentUser.challengesFailed);
+  });
+}
+
+
 
