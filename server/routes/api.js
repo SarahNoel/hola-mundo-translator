@@ -45,6 +45,7 @@ router.post('/users', function(req, res) {
     wordsTranslatedCorrectly:0,
     wordsTranslatedIncorrectly:0,
     currentQuizWordsWrong:0,
+    currentQuizWordsCorrect: 0
   })
   .save(function(err, user) {
     res.json({user:user, message: 'User added!'});

@@ -5,7 +5,6 @@ var outputLang;
 var quizName;
 
 $(document).on('ready', function() {
-  console.log("sanity check!");
   makeNewUser();
 });//end on-ready
 
@@ -17,6 +16,7 @@ $('#home-nav').on('click', function(event){
   $('#challenges-page').hide();
   $('#progress-page').hide();
   $('#practice-page').hide();
+  $('#quiz-results-page').hide();
   $('#home-page').fadeIn();
 });
 
@@ -25,6 +25,7 @@ $('#practice-nav').on('click', function(event){
   $('#home-page').hide();
   $('#challenges-page').hide();
   $('#progress-page').hide();
+  $('#quiz-results-page').hide();
   $('#practice-page').fadeIn();
 });
 
@@ -33,12 +34,14 @@ $('#challenge-nav').on('click', function(event){
   $('#home-page').hide();
   $('#progress-page').hide();
   $('#practice-page').hide();
+  $('#quiz-results-page').hide();
   $('#challenges-page').fadeIn();
 });
 
 $('#progress-nav').on('click', function(event){
   event.preventDefault();
   $('#home-page').hide();
+  $('#quiz-results-page').hide();
   $('#challenges-page').hide();
   $('#practice-page').hide();
   $('#progress-page').fadeIn();
@@ -120,6 +123,9 @@ $(document).on("click", '#challenge-start', function(event){
   currentUser = getSingleUser(currentUserNum);
   currentUser.challengesTaken += 1;
   currentUser.currentQuizWordsWrong = 0;
+  currentUser.currentQuizWordsCorrect = 0;
+  updateSingleUser(currentUser, currentUserNum);
+
 
   //choose array to quiz from
   for (var i = 0; i < allQuizzes.length; i++) {
@@ -165,10 +171,8 @@ $('#user-submit').on('click', function(event){
 
   var answer;
   progBarWidth += 5;
-  console.log(currentUser)
   //update progress bar and stats
   $('#prog-bar').css({width:progBarWidth+'%'});
-  $('#words-translated').html(currentUser.wordsTranslated);
 
   //find answer by translating English array word to user selected END language
   var phrase = useArray[index];
@@ -187,9 +191,12 @@ $('#user-submit').on('click', function(event){
       //increment correct answers by 1
       currentUser.wordsTranslatedCorrectly += 1;
       currentUser.wordsTranslated += 1;
+      currentUser.currentQuizWordsCorrect += 1;
+
+      updateSingleUser(currentUser, currentUserNum);
+
       //show right answer and stats
       $('#check-answer').append('<h2 class = "green">Correct!<br>'+ originalWord + ' is ' + answer +'</h2>');
-      $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
     }
     else {
       var mistakes = 0;
@@ -202,6 +209,8 @@ $('#user-submit').on('click', function(event){
       if(mistakes <= 1) {
         currentUser.wordsTranslatedCorrectly += 1;
         currentUser.wordsTranslated += 1;
+        currentUser.currentQuizWordsCorrect += 1;
+
         //updating user info
         updateSingleUser(currentUser, currentUserNum);
         //show right answer and stats
@@ -218,7 +227,6 @@ $('#user-submit').on('click', function(event){
 
         //show answer and stats
         $('#check-answer').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>');
-        $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
 
         //if wrong > five, start over, failed quizzes up by 1
         if(currentUser.currentQuizWordsWrong >= 5){
@@ -250,7 +258,7 @@ $('#next-question').on('click', function(event){
   $('#challenge-user-word').val('');
   $('#check-answer').html('');
 
-  if(index < 21){
+  if(index < 20){
     //translating English array word to user selected START language
     var phrase = useArray[index];
     payload = {
@@ -269,14 +277,14 @@ $('#next-question').on('click', function(event){
   //if no more questions
   }else{
     currentUser.challengesPassed += 1;
+    $('#quiz-words-correct').html(currentUser.currentQuizWordsCorrect);
+    $('#quiz-words-incorrect').html(currentUser.currentQuizWordsWrong);
     //updating user info
     updateSingleUser(currentUser, currentUserNum);
+
     //show quiz results
-
-
-////////////DO THIS/////////////////
-
-
+    $('#challenges-page').hide();
+    $('#quiz-results-page').fadeIn();
 
   }
 }); //end next question
@@ -316,7 +324,9 @@ function updateSingleUser(currentUser, currentUserNum){
     challengesTaken :currentUser.challengesTaken,
     challengesPassed: currentUser.challengesPassed,
     challengesFailed: currentUser.challengesFailed,
-    currentQuizWordsWrong: currentUser.currentQuizWordsWrong
+    currentQuizWordsWrong: currentUser.currentQuizWordsWrong,
+    currentQuizWordsCorrect: currentUser.currentQuizWordsCorrect
+
   };
   $.ajax({
     method: "PUT",
@@ -324,7 +334,6 @@ function updateSingleUser(currentUser, currentUserNum){
     data: payload
   }).done(function(data) {
     currentUser = data;
-    console.log(currentUser);
     $('#words-translated').html(currentUser.wordsTranslated);
     $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
     $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
@@ -378,54 +387,54 @@ var numbersQuiz = {
 var allQuizzes = [animalQuiz, bodyQuiz, commonWordsQuiz, travelQuiz, numbersQuiz];
 
 var langCodes = [
-{"id":"ar", "name": "Arabic"},
-{"id":"bs-Latn", "name": "Bosnian (Latin)"},
-{"id":"bg", "name": "Bulgarian"},
-{"id":"ca", "name": "Catalan"},
-{"id":"zh-CHS", "name": "Chinese (Simplified)"},
-{"id":"zh-CHT", "name": "Chinese (Traditional)"},
-{"id":"hr", "name": "Croatian"},
-{"id":"cs", "name": "Czech"},
-{"id":"da", "name": "Danish"},
-{"id":"nl", "name": "Dutch"},
-{"id":"en", "name": "English"},
-{"id":"et", "name": "Estonian"},
-{"id":"fi", "name": "Finnish"},
-{"id":"fr", "name": "French"},
-{"id":"de", "name": "German"},
-{"id":"el", "name": "Greek"},
-{"id":"ht", "name": "Hatian Creole"},
-{"id":"he", "name": "Hebrew"},
-{"id":"hi", "name": "Hindi"},
-{"id":"mww", "name": "Hmong Daw"},
-{"id":"hu", "name": "Hungarian"},
-{"id":"id", "name": "Indonesian"},
-{"id":"it", "name": "Italian"},
-{"id":"ja", "name": "Japanese"},
-{"id":"tlh", "name": "Klingon"},
-{"id":"ko", "name": "Korean"},
-{"id":"lv", "name": "Latvian"},
-{"id":"lt", "name": "Lithuanian"},
-{"id":"ms", "name": "Malay"},
-{"id":"mt", "name": "Maltese"},
-{"id":"no", "name": "Norwegian"},
-{"id":"fa", "name": "Persian"},
-{"id":"pl", "name": "Polish"},
-{"id":"pt", "name": "Portuguese"},
-{"id":"otq", "name": "Querétaro Otomi"},
-{"id":"ro", "name": "Romanian"},
-{"id":"ru", "name": "Russian"},
-{"id":"sr-Cyrl", "name": "Serbian (Cyrillic)"},
-{"id":"sr-Latn", "name": "Serbain (Latin)"},
-{"id":"sk", "name": "Slovak"},
-{"id":"sl", "name": "Slovenian"},
-{"id":"es", "name": "Spanish"},
-{"id":"sv", "name": "Swedish"},
-{"id":"th", "name": "Thai"},
-{"id":"tr", "name": "Turkish"},
-{"id":"uk", "name": "Ukrainian"},
-{"id":"ur", "name": "Urdu"},
-{"id":"vi", "name": "Vietnamese"},
-{"id":"cy", "name": "Welsh"},
-{"id":"yua", "name": "Yucatec Maya"}
+{id:"ar", name: "Arabic"},
+{id:"bs-Latn", name: "Bosnian (Latin)"},
+{id:"bg", name: "Bulgarian"},
+{id:"ca", name: "Catalan"},
+{id:"zh-CHS", name: "Chinese (Simplified)"},
+{id:"zh-CHT", name: "Chinese (Traditional)"},
+{id:"hr", name: "Croatian"},
+{id:"cs", name: "Czech"},
+{id:"da", name: "Danish"},
+{id:"nl", name: "Dutch"},
+{id:"en", name: "English"},
+{id:"et", name: "Estonian"},
+{id:"fi", name: "Finnish"},
+{id:"fr", name: "French"},
+{id:"de", name: "German"},
+{id:"el", name: "Greek"},
+{id:"ht", name: "Hatian Creole"},
+{id:"he", name: "Hebrew"},
+{id:"hi", name: "Hindi"},
+{id:"mww", name: "Hmong Daw"},
+{id:"hu", name: "Hungarian"},
+{id:"id", name: "Indonesian"},
+{id:"it", name: "Italian"},
+{id:"ja", name: "Japanese"},
+{id:"tlh", name: "Klingon"},
+{id:"ko", name: "Korean"},
+{id:"lv", name: "Latvian"},
+{id:"lt", name: "Lithuanian"},
+{id:"ms", name: "Malay"},
+{id:"mt", name: "Maltese"},
+{id:"no", name: "Norwegian"},
+{id:"fa", name: "Persian"},
+{id:"pl", name: "Polish"},
+{id:"pt", name: "Portuguese"},
+{id:"otq", name: "Querétaro Otomi"},
+{id:"ro", name: "Romanian"},
+{id:"ru", name: "Russian"},
+{id:"sr-Cyrl", name: "Serbian (Cyrillic)"},
+{id:"sr-Latn", name: "Serbain (Latin)"},
+{id:"sk", name: "Slovak"},
+{id:"sl", name: "Slovenian"},
+{id:"es", name: "Spanish"},
+{id:"sv", name: "Swedish"},
+{id:"th", name: "Thai"},
+{id:"tr", name: "Turkish"},
+{id:"uk", name: "Ukrainian"},
+{id:"ur", name: "Urdu"},
+{id:"vi", name: "Vietnamese"},
+{id:"cy", name: "Welsh"},
+{id:"yua", name: "Yucatec Maya"}
 ];
