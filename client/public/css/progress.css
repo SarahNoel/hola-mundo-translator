@@ -107,8 +107,7 @@ font-family: 'Open Sans Condensed', sans-serif;
     }
 }
 
-.donuts text {
-  font-size: 5px;
+text {
+  font-weight: normal !important;
 }
-
 

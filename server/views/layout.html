@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/progress.css">
   </head>
   <body>
 
@@ -22,12 +24,45 @@
         </div>
       </div>
     </nav>
+
+    <!-- Sidebar -->
+    <div id="wrapper">
+        <div class="col-xs-offset-10 col-xs-2 id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">P R O G R E S S</a>
+                </li>
+                <div id="totalWords">
+                    <li>
+                        <a class="titles" href="#">Total Words</a>
+                    </li>
+                    <li>
+                        <div class="donuts" id="donut-1" style="height: 230px;"></div>
+                    </li>
+                </div>
+                <div id="totalChallenges">
+                   <li>
+                        <a class="titles" href="#">Total Challenges</a>
+                    </li>
+                    <li>
+                        <div class="donuts" id="donut-2" style="height: 230px;"></div>
+                    </li>
+                </div>
+
+            </ul>
+        </div>
+    </div>
+  <!-- END SIDEBAR -->
     {% block content %}
 
 
     {% endblock %}
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2015.2.902/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2015.2.902/js/kendo.all.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/progress.js"></script>
+
   </body>
 </html>
