@@ -93,9 +93,8 @@ $('#translateBtn').on('click', function(event){
 
    //show tranlated word
   $.post('/api/translate', payload, function(data) {
-    console.log(data);
     $('#result').append(data.translated_text.toLowerCase());
-    });
+  });
 }); //end translate for practice
 
 
@@ -109,21 +108,19 @@ var questionNum = 1;
 
 $(document).on("click", '#challenge-start', function(event){
   event.preventDefault();
-  //reset progress bar
+
+  //reset progress bar, update questions,
   progBarWidth = 0;
-  $('#prog-bar').css({width:progBarWidth+'%'});
-
-  //get user
-  console.log(currentUserNum);
-  currentUser = getSingleUser(currentUserNum);
-  console.log(currentUser);
-
   $('.invis').hide();
   $('#check-answer').html('');
   $('#question-number').html("Question 1/20");
-  console.log(currentUser);
+  $('#prog-bar').css({width:progBarWidth+'%'});
+
+  //get user
+  currentUser = getSingleUser(currentUserNum);
   currentUser.challengesTaken += 1;
   currentUser.currentQuizWordsWrong = 0;
+
   //choose array to quiz from
   for (var i = 0; i < allQuizzes.length; i++) {
     if(quizName === allQuizzes[i].title){
@@ -158,7 +155,6 @@ $(document).on("click", '#challenge-start', function(event){
     //submit button appears
     $('.invis').fadeIn();
     $('.hide-submit').fadeIn();
-
   });
 }); //end start challenge button
 
@@ -168,16 +164,14 @@ $('#user-submit').on('click', function(event){
   currentUser = getSingleUser(currentUserNum);
 
   var answer;
-  currentUser.wordsTranslated += 1;
   progBarWidth += 5;
-
+  console.log(currentUser)
   //update progress bar and stats
   $('#prog-bar').css({width:progBarWidth+'%'});
   $('#words-translated').html(currentUser.wordsTranslated);
 
   //find answer by translating English array word to user selected END language
   var phrase = useArray[index];
-
   var userSubmit = $('#challenge-user-word').val().trim().toLowerCase();
 
   payload = {
@@ -186,51 +180,54 @@ $('#user-submit').on('click', function(event){
     outputLang:outputLang
     };
 
-    $.post('/api/translate', payload, function(data) {
-      answer = data.translated_text.trim().toLowerCase();
-      $('.appear-later').show();
-      if(userSubmit === answer){
-        //increment correct answers by 1
+  $.post('/api/translate', payload, function(data) {
+    answer = data.translated_text.trim().toLowerCase();
+    $('.appear-later').show();
+    if(userSubmit === answer){
+      //increment correct answers by 1
+      currentUser.wordsTranslatedCorrectly += 1;
+      currentUser.wordsTranslated += 1;
+      //show right answer and stats
+      $('#check-answer').append('<h2 class = "green">Correct!<br>'+ originalWord + ' is ' + answer +'</h2>');
+      $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+    }
+    else {
+      var mistakes = 0;
+      var answerArray = answer.split("");
+      for(var i = 0; i < answerArray.length; i++) { // go from first to last character index the words
+        if(userSubmit.charAt(i) != answer.charAt(i)) { // if this character from word 1 does not equal the character from word 2
+          mistakes += 1;
+        }
+      }
+      if(mistakes <= 1) {
         currentUser.wordsTranslatedCorrectly += 1;
+        currentUser.wordsTranslated += 1;
+        //updating user info
+        updateSingleUser(currentUser, currentUserNum);
         //show right answer and stats
-        $('#check-answer').append('<h2 class = "green">Correct!<br>'+ originalWord + ' is ' + answer +'</h2>');
+        $('#check-answer').append('<h2 class = "green">Off by one, but we\'ll count it.<br>'+ originalWord + ' is ' + answer +'</h2>');
         $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
       }
-      else {
-        var mistakes = 0;
-        var answerArray = answer.split("");
-        for(var i = 0; i < answerArray.length; i++) { // go from first to last character index the words
-          if(userSubmit.charAt(i) != answer.charAt(i)) { // if this character from word 1 does not equal the character from word 2
-            mistakes += 1;
-          }
-        }
-        if(mistakes <= 1) { // and if you have more mistakes than allowed
-          currentUser.wordsTranslatedCorrectly += 1;
-          //updating user info
-          updateSingleUser(currentUser, currentUserNum);
-          //show right answer and stats
-          $('#check-answer').append('<h2 class = "green">Off by one, but we\'ll count it.<br>'+ originalWord + ' is ' + answer +'</h2>');
-          $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
-        }
-        else if(mistakes >=2){
-          //increment wrong answers by 1
-          currentUser.wordsTranslatedIncorrectly += 1;
-          currentUser.currentQuizWordsWrong += 1;
-          //updating user info- PUT request
+      else if(mistakes >=2){
+        //increment wrong answers by 1
+        currentUser.wordsTranslatedIncorrectly += 1;
+        currentUser.currentQuizWordsWrong += 1;
+        currentUser.wordsTranslated += 1;
+        //updating user info- PUT request
+        updateSingleUser(currentUser, currentUserNum);
+
+        //show answer and stats
+        $('#check-answer').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>');
+        $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+
+        //if wrong > five, start over, failed quizzes up by 1
+        if(currentUser.currentQuizWordsWrong >= 5){
+          currentUser.challengesFailed += 1;
+          //updating user info-PUT request
           updateSingleUser(currentUser, currentUserNum);
 
-          //show answer and stats
-          $('#check-answer').append('<h2 class = "red">Incorrect<br>'+ originalWord + ' is ' + answer+'</h2>');
-          $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
-
-          //if wrong > five, start over, failed quizzes up by 1
-          if(currentUser.currentQuizWordsWrong >= 5){
-            currentUser.challengesFailed += 1;
-            //updating user info-PUT request
-            updateSingleUser(currentUser, currentUserNum);
-
-            $('.appear-later').hide();
-            $('#check-answer').append('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
+          $('.appear-later').hide();
+          $('#check-answer').append('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
           }
         }
       }
@@ -244,7 +241,7 @@ $('#next-question').on('click', function(event){
   event.preventDefault();
   //get user
   currentUser = getSingleUser(currentUserNum);
-  console.log(currentUser);
+  //update stats and DOM
   index += 1;
   questionNum += 1;
   $('#question-number').html("Question " + questionNum + "/20");
@@ -256,7 +253,6 @@ $('#next-question').on('click', function(event){
   if(index < 21){
     //translating English array word to user selected START language
     var phrase = useArray[index];
-
     payload = {
       phrase:phrase,
       inputLang:'en',
@@ -277,8 +273,12 @@ $('#next-question').on('click', function(event){
     updateSingleUser(currentUser, currentUserNum);
     //show quiz results
 
-  }
 
+////////////DO THIS/////////////////
+
+
+
+  }
 }); //end next question
 
 
@@ -292,7 +292,7 @@ $(document).on('click', '#progress-nav', function(event){
 
 ///////////////////   HELPER FUNCTIONS  ///////////////////
 
-//POST new user
+//POST-make new user
 function makeNewUser(){
   var payload = {name:"Guest"};
   $.post('/api/users', payload, function(data){
@@ -307,7 +307,7 @@ function makeNewUser(){
   });
 }
 
-//PUT single user info
+//PUT- update single user info
 function updateSingleUser(currentUser, currentUserNum){
   payload ={
     wordsTranslated: currentUser.wordsTranslated,
@@ -323,14 +323,14 @@ function updateSingleUser(currentUser, currentUserNum){
     url: '/api/user/'+ currentUserNum,
     data: payload
   }).done(function(data) {
-      currentUser = data;
-      console.log(currentUser);
-      $('#words-translated').html(currentUser.wordsTranslated);
-      $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
-      $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
-      $('#challenges-taken').html(currentUser.challengesTaken);
-      $('#challenges-passsed').html(currentUser.challengesPassed);
-      $('#challenges-failed').html(currentUser.challengesFailed);
+    currentUser = data;
+    console.log(currentUser);
+    $('#words-translated').html(currentUser.wordsTranslated);
+    $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
+    $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
+    $('#challenges-taken').html(currentUser.challengesTaken);
+    $('#challenges-passsed').html(currentUser.challengesPassed);
+    $('#challenges-failed').html(currentUser.challengesFailed);
   });
 }
 
@@ -429,4 +429,3 @@ var langCodes = [
 {"id":"cy", "name": "Welsh"},
 {"id":"yua", "name": "Yucatec Maya"}
 ];
-

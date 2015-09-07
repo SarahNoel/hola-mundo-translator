@@ -64,6 +64,10 @@ li{
   color: black;
 }
 
+.fixed-answer-size{
+  height: 135px;
+}
+
 /*VERTICAL PAGE SPACING*/
 
 /*dropdown vertical spacing*/
