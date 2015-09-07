@@ -2,13 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next){
-  res.render('index', {title:"Translator"})
+  res.render('index', {title:"Translator"});
 });
 
 router.get('/challenges', function(req, res, next){
-  res.render('challenges', {title: "Challenges!"})
-})
+  res.render('challenges', {title: "Challenges!"});
+});
 
-
+router.get('/progress', function(req,res,next){
+  res.render('progress');
+});
 
 module.exports = router;

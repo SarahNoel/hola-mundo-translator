@@ -1,0 +1,114 @@
+body {
+font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#wrapper {
+    padding-left: 0;
+    margin-top: -8px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 250px;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    background: #EDEDED;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 10;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.sidebar-nav li a {
+    padding: 1em;
+    display: block;
+    text-decoration: none;
+    color: #222;
+    text-align: center;
+}
+
+.sidebar-nav > .sidebar-brand {
+    border: solid;
+    border-color: #222;
+    border-width: 1px;
+    font-size: 2.2em;
+    background-color: #8A8A8A;
+}
+
+#totalWords, #totalChallenges {
+  border: solid;
+  border-color: #222;
+  border-width: 1px;
+}
+
+.titles {
+  font-size: 1.4em;
+  margin-bottom: -15px;
+}
+
+.donuts {
+  padding-bottom: 1.15em;
+}
+
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.donuts text {
+  font-size: 5px;
+}
+
+
