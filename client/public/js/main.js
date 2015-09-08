@@ -23,7 +23,6 @@ $('.home-nav').on('click', function(event){
   $('#home-page').fadeIn();
 });
 
-
 $('.practice-nav').on('click', function(event){
   event.preventDefault();
   console.log("test");
