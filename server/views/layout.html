@@ -3,30 +3,48 @@
   <head>
     <meta charset='utf-8'>
     <title>{{ title }}</title>
-    <link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='/css/main.css'>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- Custom Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   </head>
   <body>
 
-  <nav class='navbar navbar-default navbar-fixed-top'>
-    <div class='navbar-header'>
-      <div id='navbar' class='navbar-collapse collapse'>
-        <ul class='nav navbar-nav'>
-          <li id = 'home-nav' class='gray'>Home </li>
-          <li id = 'practice-nav' class = 'gray'>Practice</li>
-          <li id = 'challenge-nav' class = 'gray'>Challenges</li>
-          <li id = 'progress-nav' class = 'gray'>Progress</li>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand topnav" id="home-nav">Home</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li id="practice-nav"><a>Practice</a>
+          </li>
+          <li id="challenge-nav"><a>Challenge</a>
+          </li>
+          <li id="progress-nav"><a>Progress</a>
+          </li>
         </ul>
       </div>
+    <!-- end container -->
     </div>
   </nav>
 
     {% block content %}
 
-
     {% endblock %}
-    <script type='text/javascript' src='//code.jquery.com/jquery-2.1.4.min.js'></script>
-    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='/js/main.js'></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
   </body>
 </html>

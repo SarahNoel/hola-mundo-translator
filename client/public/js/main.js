@@ -5,9 +5,10 @@ var outputLang;
 var quizName;
 
 $(document).on('ready', function() {
+  $(this).scrollTop(0);
   makeNewUser();
-});//end on-ready
 
+});//end on-ready
 
 ///////////////////   NAVIGATION  ///////////////////
 
@@ -69,6 +70,15 @@ $(".option3 li a").click(function(){
   $(".btn3:first-child").text($(this).text());
   quizName = $(this).html();
    });
+
+
+//scrolls nicely to services div when header button clicked - LUCY ADDED
+$('#find-out-more').on('click', function(e){
+  e.preventDefault();
+  $('html, body').animate({
+  scrollTop: $('a[name=services]').offset().top
+  }, 1000);
+});
 
 
 ///////////////////   PRACTICE  ///////////////////
