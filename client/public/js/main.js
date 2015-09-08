@@ -35,6 +35,8 @@ $('#challenge-nav').on('click', function(event){
   $('#progress-page').hide();
   $('#practice-page').hide();
   $('#quiz-results-page').hide();
+  $('.invis').hide();
+  $('.hide-submit').hide();
   $('#challenges-page').fadeIn();
 });
 
@@ -125,7 +127,6 @@ $(document).on("click", '#challenge-start', function(event){
   currentUser.currentQuizWordsWrong = 0;
   currentUser.currentQuizWordsCorrect = 0;
   updateSingleUser(currentUser, currentUserNum);
-
 
   //choose array to quiz from
   for (var i = 0; i < allQuizzes.length; i++) {
