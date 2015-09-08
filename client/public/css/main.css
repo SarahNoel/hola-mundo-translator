@@ -11,7 +11,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
+  /*font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;*/
   font-weight: 700;
 }
 
@@ -155,6 +156,12 @@ p {
 /*titles of quiz text boxes*/
 .textBoxTitle {
   font-size: 1.3em;
+}
+
+/* HOMEPAGE FORMATTING */
+
+#home-page {
+  padding: 0;
 }
 
 a {
@@ -305,10 +312,7 @@ p.copyright {
   margin: 15px 0 0;
 }
 
-body {
-  padding: 50px;
-  font-family: 'Open Sans Condensed', sans-serif;
-}
+/* END HOMEPAGE FORMATTING */
 
 /*VERTICAL PAGE SPACING*/
 
