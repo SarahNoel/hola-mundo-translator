@@ -27,9 +27,26 @@ h6 {
   display: none;
 }
 
-.gray {
-  color: #707779;
-  padding: 10px;
+.modal-content {
+  padding: 15px;
+  text-align: center;
+}
+
+.modal-header{
+  padding: 0;
+}
+
+.smaller{
+  font-size: 17px;
+  font-weight: lighter;
+}
+
+.bigger{
+  font-size: 18px;
+}
+
+.even-bigger{
+  font-size: 24px
 }
 
 li{
@@ -40,6 +57,7 @@ li{
 .invis{
   display: none;
 }
+
 
 .appear-later{
   display: none;

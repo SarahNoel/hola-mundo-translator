@@ -486,20 +486,30 @@
 </div> <!-- END CHALLENGE PAGE -->
 
 
-<!-- QUIZ RESULTS PAGE -->
+<!-- QUIZ RESULTS MODAL -->
 
-<div id="quiz-results-page" class="start-invis">
-  <h2>Quiz Results</h2>
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
     <div>
-      <ul class='list-unstyled'>
-        <li><h3>Questions Correct</h3></li></ul>
-      <ul class='list-unstyled'>Questions Correct
+      <div class="modal-header">
+        <h4 class="even-bigger"> Congratulations!  </h4>
+        <h4 class = "smaller">You passed this quiz.</h4>
+        </div>
+
+        <ul class='list-unstyled'><li><h5 class='bigger'>Quiz Results</h5></li></ul>
+        <ul class='list-unstyled'>Questions Correct
         <li id= 'quiz-words-correct'></li></ul>
       <ul class='list-unstyled'>Questions Incorrect
         <li id= 'quiz-words-incorrect'></li></ul>
    </div>
+   <button type="button" data-dismiss="modal" class="btn-xs btn-info progress-nav">See Current Progress</button>
+    </div>
+
+  </div>
 </div>
 
+<!-- END MODAL -->
 
 <!-- PROGRESS PAGE -->
 <div id="progress-page" class = 'start-invis'>

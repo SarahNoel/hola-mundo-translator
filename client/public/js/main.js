@@ -13,7 +13,7 @@ $(document).on('ready', function() {
 
 ///////////////////   NAVIGATION  ///////////////////
 
-$(document).on('click', '#home-nav', function(event){
+$('.home-nav').on('click', function(event){
   console.log("test");
   event.preventDefault();
   $('#challenges-page').hide();
@@ -23,7 +23,7 @@ $(document).on('click', '#home-nav', function(event){
   $('#home-page').fadeIn();
 });
 
-$(document).on('click', '#practice-nav', function(event){
+$('.practice-nav').on('click',  function(event){
   event.preventDefault();
   console.log("test");
   $('#home-page').hide();
@@ -33,7 +33,7 @@ $(document).on('click', '#practice-nav', function(event){
   $('#practice-page').fadeIn();
 });
 
-$('#challenge-nav').on('click', function(event){
+$('.challenge-nav').on('click', function(event){
   event.preventDefault();
   console.log("test");
   $('#home-page').hide();
@@ -45,7 +45,7 @@ $('#challenge-nav').on('click', function(event){
   $('#challenges-page').fadeIn();
 });
 
-$('#progress-nav').on('click', function(event){
+$('.progress-nav').on('click', function(event){
   event.preventDefault();
   console.log("test");
   $('#home-page').hide();
@@ -257,7 +257,6 @@ $('#user-submit').on('click', function(event){
           }
         }
       }
-      $('#challenge-user-word').val('');
       $('.hide-submit').hide();
     });
   }); //end challenge-submit
@@ -298,13 +297,7 @@ $('#next-question').on('click', function(event){
     currentUser.challengesPassed += 1;
     //updating user info
     updateSingleUser(currentUser, currentUserNum);
-    //show quiz results
-    //
-    //
-    //
-    //FIX HERE FOR QUIZ PROGRESSSSSS
-    $('#challenges-page').hide();
-    $('#quiz-results-page').fadeIn();
+    $('#myModal').modal('show');
 
   }
 }); //end next question
