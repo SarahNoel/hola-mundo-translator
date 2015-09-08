@@ -480,9 +480,31 @@ p {
 text {
   font-weight: normal !important;
 }
-
-/*Nav Formatting*/
-#progress-nav {
-  margin-right: -5.5em;
-}
 /*END PROGRESS BAR FORMATTING*/
+
+/*PROGRESS PAGE*/
+#progress-page {
+  padding-top: 3em;
+}
+
+.total {
+  font-size: 2.3em;
+}
+
+.correct, .incorrect {
+  font-size: 5.8em;
+}
+.totalScore, .splitScore {
+  text-align: center;
+  padding-bottom: 2.8em;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+/*END PROGRESS PAGE*/
+
