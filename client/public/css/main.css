@@ -2,9 +2,10 @@ body,
 html {
   width: 100%;
   height: 100%;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 900;
 }
 
-body,
 h1,
 h2,
 h3,
@@ -12,7 +13,7 @@ h4,
 h5,
 h6 {
   font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .user-id{
@@ -177,6 +178,12 @@ p {
   font-size: 1.3em;
 }
 
+/* HOMEPAGE FORMATTING */
+
+#home-page {
+  padding: 0;
+}
+
 a {
   color: black;
 }
@@ -218,7 +225,7 @@ a {
 }
 
 .intro-message > h3 {
-  text-shadow: 4px 4px 4px black;
+  text-shadow: 1px 1px 30px black;
 }
 
 @media(max-width:767px) {
@@ -237,7 +244,7 @@ ul.intro-social-buttons > li {
 }
 
 ul.intro-social-buttons > li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .intro-divider {
@@ -325,10 +332,7 @@ p.copyright {
   margin: 15px 0 0;
 }
 
-body {
-  padding: 50px;
-  font-family: 'Open Sans Condensed', sans-serif;
-}
+/* END HOMEPAGE FORMATTING */
 
 /*VERTICAL PAGE SPACING*/
 
