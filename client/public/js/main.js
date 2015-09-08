@@ -277,11 +277,8 @@ $('#next-question').on('click', function(event){
   //if no more questions
   }else{
     currentUser.challengesPassed += 1;
-    $('#quiz-words-correct').html(currentUser.currentQuizWordsCorrect);
-    $('#quiz-words-incorrect').html(currentUser.currentQuizWordsWrong);
     //updating user info
     updateSingleUser(currentUser, currentUserNum);
-
     //show quiz results
     $('#challenges-page').hide();
     $('#quiz-results-page').fadeIn();
@@ -340,6 +337,8 @@ function updateSingleUser(currentUser, currentUserNum){
     $('#challenges-taken').html(currentUser.challengesTaken);
     $('#challenges-passsed').html(currentUser.challengesPassed);
     $('#challenges-failed').html(currentUser.challengesFailed);
+    $('#quiz-words-correct').html(currentUser.currentQuizWordsCorrect);
+    $('#quiz-words-incorrect').html(currentUser.currentQuizWordsWrong);
   });
 }
 
