@@ -45,8 +45,10 @@ $(".option3 li a").click(function(){
    }); //end submit for practice
 
 
-
-
+$("#progress-stats").on("click", function(event) {
+     event.preventDefault();
+     $("#bar").toggle();
+  });
 
 
 });//end on-ready

@@ -80,4 +80,7 @@ p {
   font-size: 1.3em;
 }
 
-
+/*Nav Formatting*/
+#progressNav {
+  margin-right: -5.5em;
+}
