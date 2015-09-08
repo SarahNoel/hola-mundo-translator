@@ -45,7 +45,7 @@ a {
 
 .intro-message > h1 {
   margin: 0;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  text-shadow: 4px 4px 7px black;
   font-size: 5em;
 }
 
@@ -56,16 +56,16 @@ a {
 }
 
 .intro-message > h3 {
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+  text-shadow: 4px 4px 4px black;
 }
 
 @media(max-width:767px) {
 .intro-message {
-    padding-bottom: 15%;
+  padding-bottom: 15%;
 }
 
 .intro-message > h1 {
-    font-size: 3em;
+  font-size: 3em;
 }
 
 ul.intro-social-buttons > li {
@@ -92,7 +92,7 @@ ul.intro-social-buttons > li:last-child {
 
 .content-section {
   padding: 50px 0;
-  background-color: #f8f8f8;
+  background-color: rgb(236, 221, 201);
 }
 
 .section-heading {

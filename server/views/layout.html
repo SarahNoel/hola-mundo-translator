@@ -11,27 +11,41 @@
   </head>
   <body>
 
-
-<!--   <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Translation</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li id = 'practice-nav'><a href="/">Practice</a></li>
-            <li id = 'challenge-nav'><a href="/challenges">Challenges</a></li>
-            <li id = 'progress-nav'><a href="#">Progress</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand topnav" href="#">Home</a>
       </div>
-    </nav> -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+              <a href="/practice">Practice</a>
+          </li>
+          <li>
+              <a href="/challenges">Challenge</a>
+          </li>
+          <li>
+              <a href="/practice">Progress</a>
+          </li>
+        </ul>
+      </div>
+    <!-- end container -->
+    </div>
+  </nav>
+
     {% block content %}
 
-
     {% endblock %}
+
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
