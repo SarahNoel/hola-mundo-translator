@@ -512,22 +512,45 @@
 <!-- END MODAL -->
 
 <!-- PROGRESS PAGE -->
-<div id="progress-page" class = 'start-invis'>
-  <h2>Your Progress!</h2>
-    <div>
-     <ul class='list-unstyled' id='prog-bar-ul'><h3>My Progress</h3></ul>
-     <ul class='list-unstyled'>Total Words Translated
-       <li id= 'words-translated'></li></ul>
-     <ul class='list-unstyled'>Words Translated Correctly
-       <li id= 'words-correct'></li></ul>
-     <ul class='list-unstyled'>Words Translated Incorrectly
-       <li id= 'words-incorrect'></li></ul>
-     <ul class='list-unstyled'>Challenges Taken
-       <li id= 'challenges-taken'></li></ul>
-     <ul class='list-unstyled'>Challenges Passed
-       <li id= 'challenges-passsed'></li></ul>
-     <ul class='list-unstyled'>Challenges Failed
-       <li id= 'challenges-failed'></li></ul>
+
+<!-- Words Translated row -->
+  <div id="progress-page" class ='start-invis'>
+    <div class="row totalScore">
+      <div class="col-xs-offset-2 col-xs-8">
+        <h3 class='list-unstyled total'>Total Words Translated: <span id='words-translated'></span>
+        </h3>
+      </div>
+      </div>
+      <div class="row splitScore">
+        <div class="col-xs-offset-4 col-xs-2">
+          <ul class='list-unstyled'>Correct
+            <li class="correct" id='words-correct'></li>
+          </ul>
+        </div>
+        <div class="col-xs-2">
+         <ul class='list-unstyled'>Incorrect
+           <li class="incorrect" id='words-incorrect'></li></ul>
+        </div>
+      </div>
+
+<!-- Challenges row -->
+    <div class="row totalScore">
+      <div class="col-xs-offset-2 col-xs-8">
+        <h3 class='list-unstyled total'>Total Challenges Taken: <span id='challenges-taken'></span>
+        </h3>
+      </div>
+    </div>
+    <div class="row splitScore">
+      <div class="col-xs-offset-4 col-xs-2">
+       <ul class='list-unstyled'>Passed
+         <li class="correct" id='challenges-passsed'></li></ul>
+      </div>
+      <div class="col-xs-2">
+       <ul class='list-unstyled'>Failed
+         <li class="incorrect" id='challenges-failed'></li></ul>
+      </div>
+    </div>
+
    </div>
 </div>
   <!-- END PROGRESS PAGE -->
