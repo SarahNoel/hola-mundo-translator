@@ -169,6 +169,7 @@ $(document).on("click", '#challenge-start', function(event){
 $('#user-submit').on('click', function(event){
   event.preventDefault();
   currentUser = getSingleUser(currentUserNum);
+  $('#check-answer').show();
 
   var answer;
   progBarWidth += 5;

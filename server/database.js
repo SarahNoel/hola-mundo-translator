@@ -15,14 +15,6 @@ var User = new Schema(
   }
 );
 
-// var Translation = new Schema(
-//   { startPhrase:'string'
-//     inputLang:inputLang,
-//     outputLang:outputLang
-//       }
-//   }
-// );
-
 mongoose.model('users', User);
 
 mongoose.connect('mongodb://localhost/node-translator');

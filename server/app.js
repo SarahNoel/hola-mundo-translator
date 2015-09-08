@@ -1,4 +1,4 @@
-require('./database')
+require('./database');
 
 // *** main dependencies *** //
 var express = require('express');
