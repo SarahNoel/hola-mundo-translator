@@ -5,46 +5,67 @@
     <title>{{ title }}</title>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/main.css">
     <!-- Custom Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   </head>
   <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-    <div class="container topnav">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand topnav" id="home-nav">Home</a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" id="home-nav">Home</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
           <li id="practice-nav"><a>Practice</a>
           </li>
           <li id="challenge-nav"><a>Challenge</a>
           </li>
-          <li id="progress-nav"><a>Progress</a>
-          </li>
+            <li id="progress-nav">
+            <a>Progress Stats</a>
+            </li>
         </ul>
+        </div>
       </div>
-    <!-- end container -->
+    </nav>
+
+<!--   PROGRESS BAR -->
+    <div id="wrapper" class="span1 prog-bar start-invis">
+        <div id="bar" class="col-xs-offset-10 col-xs-1" id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <div id="totalWords">
+                    <li>
+                        <a class="titles" href="#">Total Words</a>
+                    </li>
+                    <li>
+                        <div class="donuts" id="donut-1" style="height: 210px;"></div>
+                    </li>
+                </div>
+                <div id="totalChallenges">
+                   <li>
+                        <a class="titles" href="#">Total Challenges</a>
+                    </li>
+                    <li>
+                        <div class="donuts" id="donut-2" style="height: 210px;"></div>
+                    </li>
+                </div>
+
+            </ul>
+        </div>
     </div>
-  </nav>
+<!-- END PROGRESS BAR -->
 
     {% block content %}
 
     {% endblock %}
-
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js'></script>
+    <script type="text/javascript" src= '//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js'></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
+
   </body>
 </html>

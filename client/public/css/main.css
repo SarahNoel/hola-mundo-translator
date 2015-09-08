@@ -304,3 +304,185 @@ footer {
 p.copyright {
   margin: 15px 0 0;
 }
+
+body {
+  padding: 50px;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/*VERTICAL PAGE SPACING*/
+
+/*dropdown vertical spacing*/
+.langSelect {
+  margin-top: 5em;
+}
+
+/*question progress number spacing*/
+p {
+  margin-top: 1.7em;
+}
+
+#quizBtn {
+  margin-top: 3em;
+}
+
+/*textboxes vertical spacing*/
+.inputLangContainer {
+  margin-top: 2em;
+  text-align: center;
+}
+
+/*ALL BUTTON FORMATTING*/
+
+/*button center page alignment*/
+.buttonRow {
+  text-align: center;
+}
+
+/*button sizing*/
+#translateBtn, #quizBtn {
+  text-align: center;
+  font-size: 1.5em;
+  width: 7em;
+}
+
+/*ALL DROP DOWN FORMATTING*/
+
+/*drop down sizing*/
+.select button {
+  margin-top: 2em;
+  width:100%;
+  text-align:left;
+}
+
+/*caret placement on all drop down menus*/
+.select .caret {
+  position:absolute;
+  right:10px;
+  margin-top:10px;
+}
+
+.select:last-child>.btn {
+  border-radius:2px;
+}
+
+/*CHALLENGES PAGE FORMATTING*/
+
+/*text to translate box*/
+.quizQuestion {
+  background-color: #EDEDED;
+  width: 100%;
+  height: 11em;
+  border-radius: 2px;
+}
+
+/*Quiz progress title (ex. question 1/20) */
+.quizStatus {
+  text-align: center;
+  font-size: 2em;
+}
+
+/*titles of quiz text boxes*/
+.textBoxTitle {
+  font-size: 1.3em;
+}
+
+
+/*PROGRESS BAR FORMATTING*/
+#wrapper {
+    padding-left: 0;
+    margin-top: -8px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 250px;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 10;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    margin-left: -2em;
+    list-style: none;
+}
+
+
+.sidebar-nav li a {
+    padding: 1em;
+    display: block;
+    text-decoration: none;
+    color: #222;
+    text-align: center;
+}
+
+.titles {
+  font-size: 1.8em;
+  margin-top: .8em;
+}
+
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+text {
+  font-weight: normal !important;
+}
+
+/*Nav Formatting*/
+#progress-nav {
+  margin-right: -5.5em;
+}
+/*END PROGRESS BAR FORMATTING*/

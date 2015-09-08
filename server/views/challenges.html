@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+   <!-- DROP DOWN MENUS -->
+      <div class="row langSelect">
+        <div class="col-sm-4">
+          <div class="input-group-btn select" id="select1">
+            <button type="button" class="btn btn1 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item1">Translate From:</span> <span class="caret"></span></button>
+            <ul class="dropdown-menu option1" role="menu">
+              <li id="ar"><a href="#">Arabic</a></li>
+              <li id="bs-Latn"><a href="#">Bosnian (Latin)</a></li>
+              <li id="bg"><a href="#">Bulgarian</a></li>
+              <li id="ca"><a href="#">Catalan</a></li>
+              <li id="zh-CHS"><a href="#">Chinese (Simplified)</a></li>
+              <li id="zh-CHT"><a href="#">Chinese (Traditional)</a></li>
+              <li id="hr"><a href="#">Croatian</a></li>
+              <li id="cs"><a href="#">Czech</a></li>
+              <li id="da"><a href="#">Danish</a></li>
+              <li id="nl"><a href="#">Dutch</a></li>
+              <li id="en"><a href="#">English</a></li>
+              <li id="et"><a href="#">Estonian</a></li>
+              <li id="fi"><a href="#">Finnish</a></li>
+              <li id="fr"><a href="#">French</a></li>
+              <li id="de"><a href="#">German</a></li>
+              <li id="el"><a href="#">Greek</a></li>
+              <li id="ht"><a href="#">Hatian Creole</a></li>
+              <li id="he"><a href="#">Hebrew</a></li>
+              <li id="hi"><a href="#">Hindi</a></li>
+              <li id="mww"><a href="#">Hmong Daw</a></li>
+              <li id="hu"><a href="#">Hungarian</a></li>
+              <li id="id"><a href="#">Indonesian</a></li>
+              <li id="it"><a href="#">Italian</a></li>
+              <li id="ja"><a href="#">Japanese</a></li>
+              <li id="tlh"><a href="#">Klingon</a></li>
+              <li id="ko"><a href="#">Korean</a></li>
+              <li id="lv"><a href="#">Latvian</a></li>
+              <li id="lt"><a href="#">Lithuanian</a></li>
+              <li id="ms"><a href="#">Malay</a></li>
+              <li id="mt"><a href="#">Maltese</a></li>
+              <li id="no"><a href="#">Norwegian</a></li>
+              <li id="fa"><a href="#">Persian</a></li>
+              <li id="pl"><a href="#">Polish</a></li>
+              <li id="pt"><a href="#">Portuguese</a></li>
+              <li id="otq"><a href="#">Querétaro Otomi</a></li>
+              <li id="ro"><a href="#">Romanian</a></li>
+              <li id="ru"><a href="#">Russian</a></li>
+              <li id="sr-Cyrl"><a href="#">Serbian (Cyrillic)</a></li>
+              <li id="sr-Latn"><a href="#">Serbain (Latin)</a></li>
+              <li id="sk"><a href="#">Slovak</a></li>
+              <li id="sl"><a href="#">Slovenian</a></li>
+              <li id="es"><a href="#">Spanish</a></li>
+              <li id="sv"><a href="#">Swedish</a></li>
+              <li id="th"><a href="#">Thai</a></li>
+              <li id="tr"><a href="#">Turkish</a></li>
+              <li id="uk"><a href="#">Ukrainian</a></li>
+              <li id="ur"><a href="#">Urdu</a></li>
+              <li id="vi"><a href="#">Vietnamese</a></li>
+              <li id="cy"><a href="#">Welsh</a></li>
+              <li id="yua"><a href="#">Yucatec Maya</a></li>
+            </ul>
+          </div>
+        </div>
+
+    <div class="col-sm-4">
+      <div class="input-group-btn select inputText" id="select1">
+        <button type="button" class="btn btn2 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item2">Translate To:</span> <span class="caret"></span></button>
+        <ul class="dropdown-menu option2" role="menu">
+              <li id="ar"><a href="#">Arabic</a></li>
+              <li id="bs-Latn"><a href="#">Bosnian (Latin)</a></li>
+              <li id="bg"><a href="#">Bulgarian</a></li>
+              <li id="ca"><a href="#">Catalan</a></li>
+              <li id="zh-CHS"><a href="#">Chinese (Simplified)</a></li>
+              <li id="zh-CHT"><a href="#">Chinese (Traditional)</a></li>
+              <li id="hr"><a href="#">Croatian</a></li>
+              <li id="cs"><a href="#">Czech</a></li>
+              <li id="da"><a href="#">Danish</a></li>
+              <li id="nl"><a href="#">Dutch</a></li>
+              <li id="en"><a href="#">English</a></li>
+              <li id="et"><a href="#">Estonian</a></li>
+              <li id="fi"><a href="#">Finnish</a></li>
+              <li id="fr"><a href="#">French</a></li>
+              <li id="de"><a href="#">German</a></li>
+              <li id="el"><a href="#">Greek</a></li>
+              <li id="ht"><a href="#">Hatian Creole</a></li>
+              <li id="he"><a href="#">Hebrew</a></li>
+              <li id="hi"><a href="#">Hindi</a></li>
+              <li id="mww"><a href="#">Hmong Daw</a></li>
+              <li id="hu"><a href="#">Hungarian</a></li>
+              <li id="id"><a href="#">Indonesian</a></li>
+              <li id="it"><a href="#">Italian</a></li>
+              <li id="ja"><a href="#">Japanese</a></li>
+              <li id="tlh"><a href="#">Klingon</a></li>
+              <li id="ko"><a href="#">Korean</a></li>
+              <li id="lv"><a href="#">Latvian</a></li>
+              <li id="lt"><a href="#">Lithuanian</a></li>
+              <li id="ms"><a href="#">Malay</a></li>
+              <li id="mt"><a href="#">Maltese</a></li>
+              <li id="no"><a href="#">Norwegian</a></li>
+              <li id="fa"><a href="#">Persian</a></li>
+              <li id="pl"><a href="#">Polish</a></li>
+              <li id="pt"><a href="#">Portuguese</a></li>
+              <li id="otq"><a href="#">Querétaro Otomi</a></li>
+              <li id="ro"><a href="#">Romanian</a></li>
+              <li id="ru"><a href="#">Russian</a></li>
+              <li id="sr-Cyrl"><a href="#">Serbian (Cyrillic)</a></li>
+              <li id="sr-Latn"><a href="#">Serbain (Latin)</a></li>
+              <li id="sk"><a href="#">Slovak</a></li>
+              <li id="sl"><a href="#">Slovenian</a></li>
+              <li id="es"><a href="#">Spanish</a></li>
+              <li id="sv"><a href="#">Swedish</a></li>
+              <li id="th"><a href="#">Thai</a></li>
+              <li id="tr"><a href="#">Turkish</a></li>
+              <li id="uk"><a href="#">Ukrainian</a></li>
+              <li id="ur"><a href="#">Urdu</a></li>
+              <li id="vi"><a href="#">Vietnamese</a></li>
+              <li id="cy"><a href="#">Welsh</a></li>
+              <li id="yua"><a href="#">Yucatec Maya</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="input-group-btn select inputText" id="select3">
+        <button type="button" class="btn btn3 btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="selected item3">Choose a Quiz Subject:</span><span class="caret"></span></button>
+        <ul class="dropdown-menu option3" role="menu">
+              <li id="animal"><a href="#">Animal</a></li>
+              <li id="body"><a href="#">Body</a></li>
+              <li id="common"><a href="#">Common Words</a></li>
+              <li id="travel"><a href="#">Travel</a></li>
+              <li id="number"><a href="#">Numbers</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- END DROP DOWN MENUS -->
+
+
+<!-- QUIZ STATUS -->
+  <div class="row quizRow">
+    <div class="quizStatus col-sm-offset-3 col-sm-6">
+      <p id="progessNumber">Question 1/20</p>
+    </div>
+  </div>
+<!-- END QUIZ STATUS -->
+
+
+<!-- QUIZ INPUT BOXES AND BUTTON -->
+  <div class="row inputLangContainer">
+    <form>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="textBoxTitle">Text To Translate</label>
+          <div class="container quizQuestion">
+        <!-- place quiz word here -->
+            <p class="word"></p>
+        <!-- end -->
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="textBoxTitle">Your Translation</label>
+          <textarea type="text" class="form-control"rows="7"></textarea>
+        </div>
+      </div>
+      <div class="row buttonRow">
+        <button type="submit" class="btn btn-primary" id="quizBtn">Submit</button>
+      </div>
+    </form>
+  </div>
+<!-- END QUIZ INPUT BOXES AND BUTTON -->
+
+
+</div>
+<!-- END OF CONTAINER -->
+
+
+
+<!-- dropdown for languages -->
+
+<!-- 20 question quiz- 1 at a time -->
+<!-- provide word, user types it into input box -->
+<!-- if off by one character, mark correct -->
+<!-- show correct word -->
+
+<!-- if five incorrect, start over -->
+
+</div>
+
+{% endblock %}

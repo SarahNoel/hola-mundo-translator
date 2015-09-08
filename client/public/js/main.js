@@ -10,9 +10,11 @@ $(document).on('ready', function() {
 
 });//end on-ready
 
+
 ///////////////////   NAVIGATION  ///////////////////
 
-$('#home-nav').on('click', function(event){
+$(document).on('click', '#home-nav', function(event){
+  console.log("test");
   event.preventDefault();
   $('#challenges-page').hide();
   $('#progress-page').hide();
@@ -21,8 +23,9 @@ $('#home-nav').on('click', function(event){
   $('#home-page').fadeIn();
 });
 
-$('#practice-nav').on('click', function(event){
+$(document).on('click', '#practice-nav', function(event){
   event.preventDefault();
+  console.log("test");
   $('#home-page').hide();
   $('#challenges-page').hide();
   $('#progress-page').hide();
@@ -32,6 +35,7 @@ $('#practice-nav').on('click', function(event){
 
 $('#challenge-nav').on('click', function(event){
   event.preventDefault();
+  console.log("test");
   $('#home-page').hide();
   $('#progress-page').hide();
   $('#practice-page').hide();
@@ -43,6 +47,7 @@ $('#challenge-nav').on('click', function(event){
 
 $('#progress-nav').on('click', function(event){
   event.preventDefault();
+  console.log("test");
   $('#home-page').hide();
   $('#quiz-results-page').hide();
   $('#challenges-page').hide();
@@ -175,6 +180,7 @@ $(document).on("click", '#challenge-start', function(event){
   });
 }); //end start challenge button
 
+
 //user submits answer
 $('#user-submit').on('click', function(event){
   event.preventDefault();
@@ -286,25 +292,52 @@ $('#next-question').on('click', function(event){
      //hide next button
     $('.appear-later').hide();
     $('.hide-submit').show();
+
   //if no more questions
   }else{
     currentUser.challengesPassed += 1;
     //updating user info
     updateSingleUser(currentUser, currentUserNum);
     //show quiz results
+    //
+    //
+    //
+    //FIX HERE FOR QUIZ PROGRESSSSSS
     $('#challenges-page').hide();
     $('#quiz-results-page').fadeIn();
 
   }
 }); //end next question
 
+// Progress Bar
+$("#progress-nav").on("click", function(event) {
+     event.preventDefault();
+     currentUser = getSingleUser(currentUserNum);
+     $("#bar").toggle();
+  });
 
-///////////////////   PROGRESS  ///////////////////
+$.getScript('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',function(){
+$.getScript('http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js',function(){
 
-$(document).on('click', '#progress-nav', function(event){
-  event.preventDefault();
-  currentUser = getSingleUser(currentUserNum);
-}); //end progress click
+      Morris.Donut({
+        element: 'donut-1',
+        data: [
+         {label: "Correct", value: 70, color: "#578F72"},
+         {label: "Incorrect", value: 30, color:"#61CA80"}
+        ]
+      });
+
+        Morris.Donut({
+        element: 'donut-2',
+        data: [
+         {label: "Correct", value: 10, color: "#3E58E8"},
+         {label: "Incorrect", value: 12, color:"#3EA4E8"}
+        ]
+      });
+});
+});
+
+// End Progress Bar
 
 
 ///////////////////   HELPER FUNCTIONS  ///////////////////
