@@ -24,6 +24,12 @@ h6 {
   margin-bottom: -75px;
 }
 
+.sideMargins{
+  width: 82%;
+  margin: auto;
+  margin-top: 90px;
+}
+
 .start-invis{
   display: none;
 }
