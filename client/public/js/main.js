@@ -254,7 +254,7 @@ $('#user-submit').on('click', function(event){
           updateSingleUser(currentUser, currentUserNum);
 
           $('.appear-later').hide();
-          $('#check-answer').append('<button id="start-again" class= "challenge-start btn btn-success text-center">Start Again?</button><br><h2 class = "center">Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
+          $('#check-answer').append('<button id="start-again" class= "challenge-start btn btn-success center-btn">Start Again?</button><br><h2 class = "center">Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
           $('.progress').css('margin-top', '100px');
 
 

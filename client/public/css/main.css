@@ -512,7 +512,7 @@ text {
 }
 /*END PROGRESS BAR FORMATTING*/
 
-#start-again{
+.center-btn{
   margin: auto;
   display: table;
   margin-top: 15px;
@@ -520,6 +520,11 @@ text {
 
 .center{
   text-align: center;
+}
+
+.center-title{
+  text-align: center;
+  margin-bottom: -50px;
 }
 
 /*PROGRESS PAGE*/
