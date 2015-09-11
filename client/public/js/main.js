@@ -39,6 +39,7 @@ $('.challenge-nav').on('click', function(event){
   $('#quiz-results-page').hide();
   $('.invis').hide();
   $('.hide-submit').hide();
+  $('#challenge-start').fadeIn();
   $('#challenges-page').fadeIn();
 });
 
@@ -116,21 +117,24 @@ $('#translateBtn').on('click', function(event){
 
 ///////////////////   CHALLENGES  ///////////////////
 
-var index = 0;
+var index;
 var useArray;
 var originalWord;
-var progBarWidth = 0;
-var questionNum = 1;
+var progBarWidth;
+var questionNum;
 
-$(document).on("click", '#challenge-start', function(event){
+$(document).on("click", '.challenge-start', function(event){
   event.preventDefault();
 
   //reset progress bar, update questions,
   progBarWidth = 0;
+  index = 0;
+  questionNum = 1;
   $('.invis').hide();
   $('#check-answer').html('');
-  $('#question-number').html("Question 1/20");
+  $('#question-number').html("Question " + questionNum + "/20");
   $('#prog-bar').css({width:progBarWidth+'%'});
+  $('.progress').css('margin-top', '-80px');
 
   //get user
   currentUser = getSingleUser(currentUserNum);
@@ -173,6 +177,7 @@ $(document).on("click", '#challenge-start', function(event){
     //submit button appears
     $('.invis').fadeIn();
     $('.hide-submit').fadeIn();
+    $('#challenge-start').hide();
   });
 }); //end start challenge button
 
@@ -249,7 +254,10 @@ $('#user-submit').on('click', function(event){
           updateSingleUser(currentUser, currentUserNum);
 
           $('.appear-later').hide();
-          $('#check-answer').append('<h2>Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
+          $('#check-answer').append('<button id="start-again" class= "challenge-start btn btn-success text-center">Start Again?</button><br><h2 class = "center">Looks like this quiz is a little tough.  You\'ve missed five questions,<br>so study up and try again later!</h2>');
+          $('.progress').css('margin-top', '100px');
+
+
           }
         }
       }

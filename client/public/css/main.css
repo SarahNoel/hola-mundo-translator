@@ -512,6 +512,16 @@ text {
 }
 /*END PROGRESS BAR FORMATTING*/
 
+#start-again{
+  margin: auto;
+  display: table;
+  margin-top: 15px;
+}
+
+.center{
+  text-align: center;
+}
+
 /*PROGRESS PAGE*/
 #progress-page {
   padding-top: 3em;
