@@ -14,7 +14,6 @@ $(document).on('ready', function() {
 ///////////////////   NAVIGATION  ///////////////////
 
 $('.home-nav').on('click', function(event){
-  console.log("test");
   event.preventDefault();
   $('#challenges-page').hide();
   $('#progress-page').hide();
@@ -25,7 +24,6 @@ $('.home-nav').on('click', function(event){
 
 $('.practice-nav').on('click', function(event){
   event.preventDefault();
-  console.log("test");
   $('#home-page').hide();
   $('#challenges-page').hide();
   $('#progress-page').hide();
@@ -35,7 +33,6 @@ $('.practice-nav').on('click', function(event){
 
 $('.challenge-nav').on('click', function(event){
   event.preventDefault();
-  console.log("test");
   $('#home-page').hide();
   $('#progress-page').hide();
   $('#practice-page').hide();
@@ -47,7 +44,6 @@ $('.challenge-nav').on('click', function(event){
 
 $('.progress-nav').on('click', function(event){
   event.preventDefault();
-  console.log("test");
   $('#home-page').hide();
   $('#quiz-results-page').hide();
   $('#challenges-page').hide();
