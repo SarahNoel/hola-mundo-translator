@@ -13,12 +13,9 @@ var bt = require('../node_modules/bing-translate/lib/bing-translate.js').init({
     client_secret: '123456789101112131415'
   });
 
-
 // *** routes *** //
 var routes = require('./routes/index.js');
 var api = require('./routes/api.js');
-
-
 
 // *** express instance *** //
 var app = express();
