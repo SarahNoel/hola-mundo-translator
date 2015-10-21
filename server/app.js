@@ -23,6 +23,8 @@ var api = require('./routes/api.js');
 // *** express instance *** //
 var app = express();
 
+// *** config file *** //
+var config = require('./_config');
 
 // *** view engine *** //
 var swig = new swig.Swig();

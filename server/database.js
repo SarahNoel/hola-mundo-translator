@@ -16,5 +16,3 @@ var User = new Schema(
 );
 
 mongoose.model('users', User);
-
-mongoose.connect('mongodb://localhost/node-translator');
