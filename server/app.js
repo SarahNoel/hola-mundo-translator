@@ -1,4 +1,4 @@
-require('./database');
+require('./database.js');
 
 // *** main dependencies *** //
 var express = require('express');
@@ -7,6 +7,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
 var swig = require('swig');
 var bt = require('../node_modules/bing-translate/lib/bing-translate.js').init({
     client_id: '2035a599-6bf3-4b52-b1a7-f31d851f0647',
@@ -25,6 +27,15 @@ var app = express();
 
 // *** config file *** //
 var config = require('./_config');
+
+// *** mongoose *** ///
+mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+  }
+});
 
 // *** view engine *** //
 var swig = new swig.Swig();

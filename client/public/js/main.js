@@ -19,6 +19,7 @@ $('.home-nav').on('click', function(event){
   $('#progress-page').hide();
   $('#practice-page').hide();
   $('#quiz-results-page').hide();
+  $('#user-page').hide();
   $('#home-page').fadeIn();
 });
 
@@ -28,6 +29,8 @@ $('.practice-nav').on('click', function(event){
   $('#challenges-page').hide();
   $('#progress-page').hide();
   $('#quiz-results-page').hide();
+  $('#user-page').hide();
+  $('#register-form').hide();
   $('#practice-page').fadeIn();
 });
 
@@ -39,6 +42,8 @@ $('.challenge-nav').on('click', function(event){
   $('#quiz-results-page').hide();
   $('.invis').hide();
   $('.hide-submit').hide();
+  $('#user-page').hide();
+  $('#register-form').hide();
   $('#challenge-start').fadeIn();
   $('#challenges-page').fadeIn();
 });
@@ -49,7 +54,20 @@ $('.progress-nav').on('click', function(event){
   $('#quiz-results-page').hide();
   $('#challenges-page').hide();
   $('#practice-page').hide();
+  $('#user-page').hide();
+  $('#register-form').hide();
   $('#progress-page').fadeIn();
+});
+
+$('.user-nav').on('click', function(event){
+  event.preventDefault();
+  $('#home-page').hide();
+  $('#quiz-results-page').hide();
+  $('#challenges-page').hide();
+  $('#practice-page').hide();
+  $('#register-form').hide();
+  $('#progress-page').hide();
+  $('#user-page').fadeIn();
 });
 
 
@@ -306,44 +324,31 @@ $('#next-question').on('click', function(event){
   }
 }); //end next question
 
-// Progress Bar
-$("#progress-nav").on("click", function(event) {
-     event.preventDefault();
-     currentUser = getSingleUser(currentUserNum);
-     $("#bar").toggle();
-  });
+///////////////////   USER FUNCTIONS  ///////////////////
+//need account button
+$('#need-account').on('click', function(event){
+  event.preventDefault();
+  $('#login-form').hide();
+  $('#register-form').fadeIn();
 
-$.getScript('http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',function(){
-$.getScript('http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js',function(){
-
-      Morris.Donut({
-        element: 'donut-1',
-        data: [
-         {label: "Correct", value: 70, color: "#578F72"},
-         {label: "Incorrect", value: 30, color:"#61CA80"}
-        ]
-      });
-
-        Morris.Donut({
-        element: 'donut-2',
-        data: [
-         {label: "Correct", value: 10, color: "#3E58E8"},
-         {label: "Incorrect", value: 12, color:"#3EA4E8"}
-        ]
-      });
-});
 });
 
-// End Progress Bar
-
+//have account button
+$('#need-login').on('click', function(event){
+  event.preventDefault();
+  $('#register-form').hide();
+  $('#login-form').fadeIn();
+});
 
 ///////////////////   HELPER FUNCTIONS  ///////////////////
 
 //POST-make new user
 function makeNewUser(){
+  console.log("HELP");
   var payload = {name:"Guest"};
-  $.post('/api/users', payload, function(data){
+  $.post('/api/players', payload, function(data){
     currentUser = data.user;
+    console.log(currentUser);
   $('#words-translated').html(currentUser.wordsTranslated);
   $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
   $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);
@@ -369,7 +374,7 @@ function updateSingleUser(currentUser, currentUserNum){
   };
   $.ajax({
     method: "PUT",
-    url: '/api/user/'+ currentUserNum,
+    url: '/api/player/'+ currentUserNum,
     data: payload
   }).done(function(data) {
     currentUser = data;
@@ -386,7 +391,7 @@ function updateSingleUser(currentUser, currentUserNum){
 
 //GET single user
 function getSingleUser(currentUserNum){
-  $.get("/api/user/" + currentUserNum, function(data){
+  $.get("/api/player/" + currentUserNum, function(data){
     currentUser = data;
     $('#words-translated').html(currentUser.wordsTranslated);
     $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
@@ -407,7 +412,7 @@ var animalQuiz = {
 
 var bodyQuiz = {
   title:'Body',
-  content:['arm', 'eye', 'belly', 'leg', 'elbow', 'finger', 'foot', 'hand', 'mouth', 'nose', 'head', 'ear', 'tongue', 'toe', 'back', 'shoulder', 'tongue', 'knee', 'hip', 'waist']
+  content:['arm', 'eye', 'stomach', 'leg', 'elbow', 'finger', 'foot', 'hand', 'mouth', 'nose', 'head', 'ear', 'tongue', 'toe', 'back', 'shoulder', 'tongue', 'knee', 'hip', 'waist']
   };
 
 var commonWordsQuiz = {

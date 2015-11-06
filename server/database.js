@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-var User = new Schema(
+var Player = new Schema(
   {
     name: String,
     challengesTaken: Number,
@@ -15,4 +15,4 @@ var User = new Schema(
   }
 );
 
-mongoose.model('users', User);
+mongoose.model('players', Player);

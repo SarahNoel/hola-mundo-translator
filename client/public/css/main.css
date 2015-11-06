@@ -20,6 +20,11 @@ h6 {
   display: none;
 }
 
+.centered{
+  margin: auto;
+  display: table;
+}
+
 .title{
   margin-bottom: -75px;
 }
