@@ -344,11 +344,9 @@ $('#need-login').on('click', function(event){
 
 //POST-make new user
 function makeNewUser(){
-  console.log("HELP");
   var payload = {name:"Guest"};
   $.post('/api/players', payload, function(data){
     currentUser = data.user;
-    console.log(currentUser);
   $('#words-translated').html(currentUser.wordsTranslated);
   $('#words-correct').html(currentUser.wordsTranslatedCorrectly);
   $('#words-incorrect').html(currentUser.wordsTranslatedIncorrectly);

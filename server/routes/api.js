@@ -22,7 +22,6 @@ router.post('/translate', function(req, res, next) {
 //get ALL players
 router.get('/players', function(req, res) {
   Player.find(function(err, players){
-    console.log(players);
     res.json(players);
   });
 });
@@ -41,12 +40,9 @@ router.post('/players', function(req, res) {
     currentQuizWordsCorrect:0
   });
   newUser.save(function(err, user) {
-  console.log('ppooopp');
    if(err){
-    console.log('error! ' , err);
     res.json(err);
     }
-    console.log('user ', user);
     res.json({user:user, message: 'User added!'});
   });
 });
@@ -55,7 +51,6 @@ router.post('/players', function(req, res) {
 router.get('/player/:id', function(req, res) {
   var query = {"_id": req.params.id};
   Player.findOne(query, function(err, user){
-    console.log(user);
     res.json(user);
   });
 });
@@ -64,10 +59,8 @@ router.get('/player/:id', function(req, res) {
 router.put('/player/:id', function(req, res) {
   var query = {"_id": req.params.id};
   var update = req.body;
-  console.log(update);
   var options = {new: true};
   Player.findOneAndUpdate(query, update, options, function(err, user){
-    console.log(user);
     res.json(user);
   });
 });
@@ -76,7 +69,6 @@ router.put('/player/:id', function(req, res) {
 router.delete('/user/:id', function(req, res) {
   var query = {"_id": req.params.id};
   Player.findOneAndRemove(query, function(err, user){
-    console.log(user);
     res.json(user);
   });
 });
